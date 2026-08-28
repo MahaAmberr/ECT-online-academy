@@ -1,9 +1,9 @@
-const contactForm = document.getElementById("contactForm");
-const formMessage = document.getElementById("formMessage");
+
+const contactForm = document.getElementById("contact-form");
+const formMessage = document.querySelector(".form-status");
 
 if (contactForm) {
     contactForm.addEventListener("submit", async (event) => {
-
         event.preventDefault();
 
         const submitButton = contactForm.querySelector(
@@ -17,129 +17,71 @@ if (contactForm) {
         formMessage.textContent = "";
 
         const formData = {
-            name: contactForm.name.value.trim(),
-            email: contactForm.email.value.trim(),
-            phone: contactForm.phone.value.trim(),
-            subject: contactForm.subject.value.trim(),
-            message: contactForm.message.value.trim()
+            name: contactForm.querySelector("#name").value.trim(),
+            email: contactForm.querySelector("#email").value.trim(),
+            phone: contactForm.querySelector("#phone").value.trim(),
+            subject: contactForm.querySelector("#subject").value.trim(),
+            message: contactForm.querySelector("#message").value.trim()
         };
 
-
-        /*
-         * Frontend validation
-         */
-
+        // Frontend validation
         if (
             !formData.name ||
             !formData.email ||
             !formData.subject ||
             !formData.message
         ) {
-
-            formMessage.className =
-                "form-status error";
-
+            formMessage.className = "form-status error";
             formMessage.textContent =
                 "Please fill in all required fields.";
 
             submitButton.disabled = false;
-            submitButton.textContent =
-                "Send Message";
+            submitButton.textContent = "Send Message";
 
             return;
         }
 
-
-        /*
-         * Send the form data to the backend
-         *
-         * IMPORTANT:
-         *
-         * This localhost URL is ONLY for local testing.
-         *
-         * After deploying the backend, we will replace it with
-         * your live backend URL.
-         */
-
         try {
-
+            // Send contact form data to the live Render backend
             const response = await fetch(
-                "http://localhost:5000/api/contact",
+                "https://ect-backend.onrender.com/api/contact",
                 {
                     method: "POST",
-
                     headers: {
                         "Content-Type": "application/json"
                     },
-
                     body: JSON.stringify(formData)
                 }
             );
 
-
             const data = await response.json();
 
-
-            /*
-             * Backend returned an error
-             */
-
+            // Backend returned an error
             if (!response.ok) {
                 throw new Error(
-                    data.message ||
-                    "Something went wrong."
+                    data.message || "Unable to send your message."
                 );
             }
 
-
-            /*
-             * SUCCESS
-             */
-
-            formMessage.className =
-                "form-status success";
-
+            // Success
+            formMessage.className = "form-status success";
             formMessage.textContent =
                 "Thank you! Your message has been sent successfully.";
 
-
-            /*
-             * Clear the form
-             */
-
+            // Clear the form
             contactForm.reset();
 
-
         } catch (error) {
+            console.error("Contact form error:", error);
 
-            console.error(
-                "Contact form error:",
-                error
-            );
-
-
-            /*
-             * ERROR
-             */
-
-            formMessage.className =
-                "form-status error";
-
+            formMessage.className = "form-status error";
             formMessage.textContent =
                 error.message ||
                 "Unable to send your message. Please try again.";
-
         } finally {
-
-            /*
-             * Re-enable button
-             */
-
+            // Re-enable button
             submitButton.disabled = false;
-
-            submitButton.textContent =
-                "Send Message";
+            submitButton.textContent = "Send Message";
         }
-
     });
 }
