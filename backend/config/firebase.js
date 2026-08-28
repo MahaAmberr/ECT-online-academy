@@ -1,16 +1,25 @@
 const admin = require("firebase-admin");
+require("dotenv").config();
 
-const serviceAccount = {
-    projectId: process.env.FIREBASE_PROJECT_ID,
-    clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
-    privateKey: process.env.FIREBASE_PRIVATE_KEY
-        ? process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, "\n")
-        : undefined,
-};
+let serviceAccount;
 
-admin.initializeApp({
-    credential: admin.credential.cert(serviceAccount),
-});
+try {
+    serviceAccount = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT);
+} catch (error) {
+    console.error("❌ Firebase service account JSON is invalid.");
+    console.error(error);
+    process.exit(1);
+}
+
+if (serviceAccount.private_key) {
+    serviceAccount.private_key = serviceAccount.private_key.replace(/\\n/g, "\n");
+}
+
+if (admin.apps.length === 0) {
+    admin.initializeApp({
+        credential: admin.credential.cert(serviceAccount)
+    });
+}
 
 const db = admin.firestore();
 
