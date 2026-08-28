@@ -34,49 +34,33 @@ app.get("/", (req, res) => {
 // Test Firebase
 
 app.get("/test-firebase", async (req, res) => {
-
     try {
-
-        await db
+        const snapshot = await db
             .collection("test")
             .limit(1)
             .get();
 
+        console.log("✅ FIRESTORE TEST SUCCESSFUL");
+        console.log("Documents found:", snapshot.size);
+
         res.json({
-
             success: true,
-
-            message: "Firebase connection successful!"
-
+            message: "Firebase connection successful!",
+            documentsFound: snapshot.size
         });
 
     } catch (error) {
-
-        console.error(
-            "Firebase error:",
-            error
-        );
+        console.error("❌ FIRESTORE TEST FAILED");
+        console.error("Error name:", error.name);
+        console.error("Error message:", error.message);
+        console.error("Error code:", error.code);
+        console.error("Full error:", error);
 
         res.status(500).json({
-
             success: false,
-
-            message: "Firebase connection failed."
-
+            message: "Firebase connection failed.",
+            error: error.message,
+            code: error.code
         });
-
     }
-
-});
-
-
-const PORT = process.env.PORT || 5000;
-
-
-app.listen(PORT, () => {
-
-    console.log(
-        `Server running on port ${PORT}`
-    );
-
 });
