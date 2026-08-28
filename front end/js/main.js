@@ -1,3 +1,4 @@
+
 // ============================================================
 // ECTS ACADEMY - MAIN JAVASCRIPT
 // ============================================================
@@ -8,14 +9,12 @@
 // ============================================================
 
 function initMobileNav() {
-
     const navToggle = document.querySelector(".nav-toggle");
     const navLinks = document.querySelector(".nav-links");
 
     if (!navToggle || !navLinks) return;
 
     navToggle.addEventListener("click", () => {
-
         const isOpen =
             navToggle.getAttribute("aria-expanded") === "true";
 
@@ -25,25 +24,18 @@ function initMobileNav() {
         );
 
         navLinks.classList.toggle("is-open", !isOpen);
-
     });
 
-
     navLinks.querySelectorAll("a").forEach((link) => {
-
         link.addEventListener("click", () => {
-
             navToggle.setAttribute(
                 "aria-expanded",
                 "false"
             );
 
             navLinks.classList.remove("is-open");
-
         });
-
     });
-
 }
 
 
@@ -52,14 +44,11 @@ function initMobileNav() {
 // ============================================================
 
 function initFAQ() {
-
     const items = document.querySelectorAll(".faq-item");
 
     if (!items.length) return;
 
-
     items.forEach((item) => {
-
         const question =
             item.querySelector(".faq-question");
 
@@ -68,15 +57,11 @@ function initFAQ() {
 
         if (!question || !answer) return;
 
-
         question.addEventListener("click", () => {
-
             const isOpen =
                 item.getAttribute("aria-expanded") === "true";
 
-
             items.forEach((other) => {
-
                 other.setAttribute(
                     "aria-expanded",
                     "false"
@@ -88,12 +73,9 @@ function initFAQ() {
                 if (otherAnswer) {
                     otherAnswer.style.maxHeight = null;
                 }
-
             });
 
-
             if (!isOpen) {
-
                 item.setAttribute(
                     "aria-expanded",
                     "true"
@@ -101,13 +83,9 @@ function initFAQ() {
 
                 answer.style.maxHeight =
                     answer.scrollHeight + "px";
-
             }
-
         });
-
     });
-
 }
 
 
@@ -116,24 +94,18 @@ function initFAQ() {
 // ============================================================
 
 function initScrollReveal() {
-
     const revealElements =
         document.querySelectorAll(".reveal");
 
     if (!revealElements.length) return;
 
-
     // If IntersectionObserver is supported
     if ("IntersectionObserver" in window) {
-
         const observer =
             new IntersectionObserver(
                 (entries, observer) => {
-
                     entries.forEach((entry) => {
-
                         if (entry.isIntersecting) {
-
                             entry.target.classList.add(
                                 "is-visible"
                             );
@@ -141,36 +113,24 @@ function initScrollReveal() {
                             observer.unobserve(
                                 entry.target
                             );
-
                         }
-
                     });
-
                 },
                 {
                     threshold: 0.12
                 }
             );
 
-
         revealElements.forEach((element) => {
-
             observer.observe(element);
-
         });
 
     } else {
-
         // Fallback for older browsers
-
         revealElements.forEach((element) => {
-
             element.classList.add("is-visible");
-
         });
-
     }
-
 }
 
 
@@ -179,37 +139,25 @@ function initScrollReveal() {
 // ============================================================
 
 function initBackToTop() {
-
     const button =
         document.querySelector(".back-to-top");
 
     if (!button) return;
 
-
     window.addEventListener("scroll", () => {
-
         if (window.scrollY > 500) {
-
             button.classList.add("is-visible");
-
         } else {
-
             button.classList.remove("is-visible");
-
         }
-
     });
 
-
     button.addEventListener("click", () => {
-
         window.scrollTo({
             top: 0,
             behavior: "smooth"
         });
-
     });
-
 }
 
 
@@ -218,16 +166,13 @@ function initBackToTop() {
 // ============================================================
 
 function initContactForm() {
-
     const form =
         document.querySelector("#contact-form");
 
     if (!form) return;
 
-
     const status =
         form.querySelector(".form-status");
-
 
     const validators = {
 
@@ -235,27 +180,22 @@ function initContactForm() {
             value.trim().length >= 2 ||
             "Enter your full name.",
 
-
         email: (value) =>
             /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value) ||
             "Enter a valid email address.",
-
 
         phone: (value) =>
             value.trim() === "" ||
             /^[0-9+\-\s()]{7,}$/.test(value) ||
             "Enter a valid phone number.",
 
-
         subject: (value) =>
             value.trim().length >= 3 ||
             "Let us know what this is about.",
 
-
         message: (value) =>
             value.trim().length >= 10 ||
             "Message should be at least 10 characters."
-
     };
 
 
@@ -264,66 +204,48 @@ function initContactForm() {
     // ========================================================
 
     function validateField(field) {
-
         const rule =
             validators[field.name];
 
         if (!rule) return true;
 
-
         const result =
             rule(field.value);
-
 
         const wrapper =
             field.closest(".form-field");
 
-
         if (!wrapper) {
-
             return result === true;
-
         }
-
 
         const errorElement =
             wrapper.querySelector(
                 ".error-msg, .error-message"
             );
 
-
         if (result === true) {
-
             wrapper.classList.remove(
                 "has-error"
             );
 
             if (errorElement) {
-
                 errorElement.textContent = "";
-
             }
 
             return true;
-
         }
-
 
         wrapper.classList.add(
             "has-error"
         );
 
-
         if (errorElement) {
-
             errorElement.textContent =
                 result;
-
         }
 
-
         return false;
-
     }
 
 
@@ -338,9 +260,7 @@ function initContactForm() {
         field.addEventListener(
             "blur",
             () => {
-
                 validateField(field);
-
             }
         );
 
@@ -369,26 +289,20 @@ function initContactForm() {
                     )
                 );
 
-
             const allValid =
                 fields
                     .map(validateField)
                     .every(Boolean);
 
-
             if (!allValid) {
-
                 if (status) {
-
                     status.textContent = "";
 
                     status.className =
                         "form-status";
-
                 }
 
                 return;
-
             }
 
 
@@ -397,13 +311,11 @@ function initContactForm() {
             // ------------------------------------------------
 
             if (status) {
-
                 status.textContent =
                     "Sending your message...";
 
                 status.className =
                     "form-status is-visible";
-
             }
 
 
@@ -414,12 +326,10 @@ function initContactForm() {
             const formData =
                 new FormData(form);
 
-
             const contactData =
                 Object.fromEntries(
                     formData.entries()
                 );
-
 
             console.log(
                 "Sending contact data:",
@@ -465,12 +375,10 @@ function initContactForm() {
                 // ------------------------------------------------
 
                 if (!response.ok) {
-
                     throw new Error(
                         data.message ||
                         "Failed to send your message."
                     );
-
                 }
 
 
@@ -479,13 +387,11 @@ function initContactForm() {
                 // ------------------------------------------------
 
                 if (status) {
-
                     status.textContent =
                         "Message sent successfully! Our team will get back to you soon.";
 
                     status.className =
                         "form-status is-visible success";
-
                 }
 
 
@@ -510,7 +416,6 @@ function initContactForm() {
 
                 });
 
-
                 form.querySelectorAll(
                     ".error-msg, .error-message"
                 ).forEach((error) => {
@@ -526,23 +431,17 @@ function initContactForm() {
                     error
                 );
 
-
                 if (status) {
-
                     status.textContent =
                         error.message ||
                         "Something went wrong. Please try again.";
 
                     status.className =
                         "form-status is-visible error";
-
                 }
-
             }
-
         }
     );
-
 }
 
 
@@ -551,20 +450,15 @@ function initContactForm() {
 // ============================================================
 
 function initYear() {
-
     const yearElement =
         document.querySelector(
             "#current-year"
         );
 
-
     if (yearElement) {
-
         yearElement.textContent =
             new Date().getFullYear();
-
     }
-
 }
 
 
@@ -590,3 +484,4 @@ document.addEventListener(
 
     }
 );
+
