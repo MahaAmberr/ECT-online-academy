@@ -1,3 +1,14 @@
+/* ==========================================================================
+   ECTS — ELEVATE CONSULTATION & TRAINING SERVICES
+   FINAL RESPONSIVE STYLES
+   PART 1 OF 2
+   ========================================================================== */
+
+
+/* ==========================================================================
+   1. ROOT VARIABLES
+   ========================================================================== */
+
 :root {
     /* Colors — Navy */
     --navy-950: #0e1a3f;
@@ -5,7 +16,7 @@
     --navy-800: #3c4a79;
     --navy-700: #22397a;
 
-    /* Colors — Teal family */
+    /* Colors — Teal */
     --gold-600: #0baca6;
     --gold-500: #1dc4bd;
     --gold-100: #e1f7f5;
@@ -40,24 +51,27 @@
     --fs-small: 0.875rem;
     --fs-eyebrow: 0.8rem;
 
-    /* Spacing / layout */
+    /* Layout */
     --container-w: 1180px;
     --section-pad: clamp(4rem, 8vw, 7rem);
 
+    /* Radius */
     --radius-sm: 6px;
     --radius-md: 12px;
     --radius-lg: 20px;
 
+    /* Shadows */
     --shadow-soft: 0 20px 60px -25px rgba(14, 26, 63, 0.35);
     --shadow-tight: 0 8px 24px -12px rgba(14, 26, 63, 0.3);
 
+    /* Animation */
     --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 
-/* ============================================================
+/* ==========================================================================
    2. RESET
-   ============================================================ */
+   ========================================================================== */
 
 *,
 *::before,
@@ -67,6 +81,8 @@
 
 html {
     scroll-behavior: smooth;
+    width: 100%;
+    overflow-x: hidden;
 }
 
 body,
@@ -105,31 +121,38 @@ select {
     color: inherit;
 }
 
-a {
-    color: inherit;
-    text-decoration: none;
-}
-
 button {
     cursor: pointer;
     background: none;
     border: none;
 }
 
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
 body {
+    width: 100%;
+    min-height: 100vh;
+
     font-family: var(--font-body);
     font-size: var(--fs-body);
     line-height: 1.6;
+
     color: var(--ink-800);
     background: var(--paper-50);
+
     -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
     overflow-x: hidden;
 }
 
 
-/* ============================================================
-   ACCESSIBILITY
-   ============================================================ */
+/* ==========================================================================
+   3. ACCESSIBILITY
+   ========================================================================== */
 
 :focus-visible {
     outline: 2px solid var(--gold-600);
@@ -143,9 +166,9 @@ body {
 }
 
 
-/* ============================================================
-   3. LAYOUT UTILITIES
-   ============================================================ */
+/* ==========================================================================
+   4. LAYOUT UTILITIES
+   ========================================================================== */
 
 .container {
     width: min(100% - 2.5rem, var(--container-w));
@@ -175,54 +198,43 @@ body {
 }
 
 .grid--2 {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 .grid--3 {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
 .grid--4 {
-    grid-template-columns: repeat(4, 1fr);
-}
-
-@media (max-width: 900px) {
-    .grid--3,
-    .grid--4 {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media (max-width: 640px) {
-    .grid--2,
-    .grid--3,
-    .grid--4 {
-        grid-template-columns: 1fr;
-    }
+    grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
 
-/* ============================================================
-   EYEBROW
-   ============================================================ */
+/* ==========================================================================
+   5. EYEBROW / SECTION HEAD
+   ========================================================================== */
 
 .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+
     font-family: var(--font-mono);
     font-size: var(--fs-eyebrow);
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: var(--gold-600);
 
-    display: inline-flex;
-    align-items: center;
-    gap: 0.6rem;
+    color: var(--gold-600);
 }
 
 .eyebrow::before {
     content: "";
+
     width: 22px;
     height: 1px;
+
     background: var(--gold-600);
+
     display: inline-block;
 }
 
@@ -237,6 +249,7 @@ body {
 
 .section-head p {
     margin-top: 1rem;
+
     color: var(--slate-500);
     font-size: var(--fs-lead);
 }
@@ -246,47 +259,66 @@ body {
 }
 
 
-/* ============================================================
-   DIAMOND DIVIDER
-   ============================================================ */
+/* ==========================================================================
+   6. DIAMOND DIVIDER
+   ========================================================================== */
 
 .divider-mark {
     display: flex;
     align-items: center;
     justify-content: center;
+
     gap: 0.75rem;
-    margin-block: 0;
 }
 
 .divider-mark::before,
 .divider-mark::after {
     content: "";
+
     height: 1px;
     flex: 1;
+
     background: var(--hairline);
 }
 
 .divider-mark span {
     width: 9px;
     height: 9px;
+
     background: var(--gold-600);
+
     transform: rotate(45deg);
+
     flex-shrink: 0;
 }
 
 
-/* ============================================================
-   4. TYPOGRAPHY
-   ============================================================ */
+/* ==========================================================================
+   7. TYPOGRAPHY
+   ========================================================================== */
 
 h1,
 h2,
 h3,
 h4 {
     font-family: var(--font-display);
+
     color: var(--navy-950);
+
     line-height: 1.12;
     font-weight: 600;
+}
+
+h1 {
+    font-size: var(--fs-h1);
+}
+
+h2 {
+    font-size: var(--fs-h2);
+}
+
+h3 {
+    font-size: var(--fs-h3);
 }
 
 .section--dark h1,
@@ -317,13 +349,15 @@ h4 {
 }
 
 
-/* ============================================================
-   5. BUTTONS
-   ============================================================ */
+/* ==========================================================================
+   8. BUTTONS
+   ========================================================================== */
 
 .btn {
     display: inline-flex;
     align-items: center;
+    justify-content: center;
+
     gap: 0.6rem;
 
     padding: 0.9rem 1.7rem;
@@ -336,7 +370,8 @@ h4 {
     transition:
         transform 0.25s var(--ease-out),
         box-shadow 0.25s var(--ease-out),
-        background 0.25s var(--ease-out);
+        background 0.25s var(--ease-out),
+        border-color 0.25s ease;
 
     white-space: nowrap;
 }
@@ -348,6 +383,7 @@ h4 {
 .btn--primary {
     background: var(--gold-600);
     color: var(--navy-950);
+
     box-shadow: var(--shadow-tight);
 }
 
@@ -358,7 +394,9 @@ h4 {
 
 .btn--outline {
     background: transparent;
+
     border: 1.5px solid var(--hairline-on-dark);
+
     color: inherit;
 }
 
@@ -373,15 +411,20 @@ h4 {
 
 .btn--ghost {
     padding: 0.5rem 0;
+
     color: var(--gold-600);
+
     font-size: 0.9rem;
 }
 
 .btn--ghost::after {
     content: "\2192";
+
     margin-left: 0.4rem;
-    transition: transform 0.2s var(--ease-out);
+
     display: inline-block;
+
+    transition: transform 0.2s var(--ease-out);
 }
 
 .btn--ghost:hover::after {
@@ -394,18 +437,19 @@ h4 {
 }
 
 
-/* ============================================================
-   6. HEADER / NAVIGATION
-   ============================================================ */
+/* ==========================================================================
+   9. HEADER / NAVIGATION
+   ========================================================================== */
 
 .site-header {
     position: sticky;
     top: 0;
-    z-index: 100;
+    z-index: 1000;
 
     background: rgba(31, 55, 129, 0.92);
 
     backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
 
     border-bottom: 1px solid var(--hairline-on-dark);
 }
@@ -415,7 +459,9 @@ h4 {
     align-items: center;
     justify-content: space-between;
 
-    padding-block: 1rem;
+    min-height: 82px;
+
+    padding-block: 0.7rem;
 
     color: var(--paper-50);
 }
@@ -423,6 +469,7 @@ h4 {
 .brand {
     display: flex;
     align-items: center;
+
     gap: 0.7rem;
 
     font-family: var(--font-display);
@@ -431,11 +478,13 @@ h4 {
     color: var(--paper-0);
 
     letter-spacing: 0.01em;
+
+    flex-shrink: 0;
 }
 
 .brand-mark {
-    width: 75px;
-    height: 75px;
+    width: 65px;
+    height: 65px;
 
     object-fit: contain;
 
@@ -445,6 +494,8 @@ h4 {
 .brand small {
     display: block;
 
+    margin-top: 2px;
+
     font-family: var(--font-mono);
     font-size: 0.62rem;
 
@@ -453,8 +504,6 @@ h4 {
     color: var(--gold-500);
 
     text-transform: uppercase;
-
-    margin-top: 2px;
 }
 
 .nav-links {
@@ -465,14 +514,14 @@ h4 {
 }
 
 .nav-links a {
+    position: relative;
+
+    padding-block: 0.3rem;
+
     font-size: 0.92rem;
     font-weight: 500;
 
     color: var(--slate-300);
-
-    position: relative;
-
-    padding-block: 0.3rem;
 
     transition: color 0.2s ease;
 }
@@ -511,15 +560,21 @@ h4 {
 }
 
 
-/* Mobile navigation button */
+/* ==========================================================================
+   10. MOBILE NAVIGATION BUTTON
+   ========================================================================== */
 
 .nav-toggle {
     display: none;
 
-    width: 40px;
-    height: 40px;
+    width: 42px;
+    height: 42px;
 
     position: relative;
+
+    flex-shrink: 0;
+
+    border-radius: 6px;
 }
 
 .nav-toggle span,
@@ -538,11 +593,12 @@ h4 {
 
     transition:
         transform 0.25s var(--ease-out),
-        opacity 0.2s ease;
+        opacity 0.2s ease,
+        background 0.2s ease;
 }
 
 .nav-toggle span {
-    top: 19px;
+    top: 20px;
 }
 
 .nav-toggle span::before {
@@ -565,49 +621,10 @@ h4 {
     transform: translateY(-8px) rotate(-45deg);
 }
 
-@media (max-width: 860px) {
-    .nav-toggle {
-        display: block;
-    }
 
-    .nav-links {
-        position: fixed;
-
-        inset: 0 0 0 30%;
-
-        flex-direction: column;
-        justify-content: center;
-        align-items: flex-start;
-
-        padding: 2.5rem;
-
-        background: var(--navy-950);
-
-        transform: translateX(100%);
-
-        transition: transform 0.35s var(--ease-out);
-
-        gap: 1.6rem;
-    }
-
-    .nav-links.is-open {
-        transform: translateX(0);
-    }
-
-    .nav-links a {
-        font-size: 1.15rem;
-    }
-
-    .nav-cta {
-        margin-left: 0;
-        margin-top: 1rem;
-    }
-}
-
-
-/* ============================================================
-   7. HERO
-   ============================================================ */
+/* ==========================================================================
+   11. HERO
+   ========================================================================== */
 
 .hero {
     position: relative;
@@ -624,19 +641,19 @@ h4 {
 .hero-grid {
     display: grid;
 
-    grid-template-columns: 1.1fr 0.9fr;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
 
     gap: clamp(2rem, 5vw, 4rem);
 
     align-items: center;
 
     position: relative;
-
     z-index: 2;
 }
 
 .hero h1 {
     max-width: 14ch;
+
     color: var(--paper-50);
 }
 
@@ -651,15 +668,17 @@ h4 {
 .hero-ctas {
     display: flex;
 
+    flex-wrap: wrap;
+
     gap: 1rem;
 
     margin-top: 2.2rem;
-
-    flex-wrap: wrap;
 }
 
 
-/* Ascending motif */
+/* ==========================================================================
+   12. HERO MOTIF
+   ========================================================================== */
 
 .ascend-motif {
     position: absolute;
@@ -699,8 +718,9 @@ h4 {
 
 .hero-portrait {
     position: relative;
-
     z-index: 1;
+
+    width: 100%;
 
     aspect-ratio: 4 / 5;
 
@@ -719,12 +739,19 @@ h4 {
     justify-content: center;
 
     padding: 1.75rem;
+
+    overflow: hidden;
 }
+
+
+/* ==========================================================================
+   13. STAT STRIP
+   ========================================================================== */
 
 .stat-strip {
     display: grid;
 
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(4, minmax(0, 1fr));
 
     gap: 1.5rem;
 
@@ -735,7 +762,6 @@ h4 {
     border-top: 1px solid var(--hairline-on-dark);
 
     position: relative;
-
     z-index: 2;
 }
 
@@ -752,6 +778,8 @@ h4 {
 }
 
 .stat .label {
+    margin-top: 0.35rem;
+
     font-family: var(--font-mono);
 
     font-size: 0.72rem;
@@ -761,37 +789,21 @@ h4 {
     text-transform: uppercase;
 
     color: var(--slate-300);
-
-    margin-top: 0.35rem;
-}
-
-@media (max-width: 900px) {
-    .hero-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .hero-portrait {
-        max-width: 420px;
-    }
-
-    .stat-strip {
-        grid-template-columns: repeat(2, 1fr);
-    }
 }
 
 
-/* ============================================================
-   8. INNER PAGE HERO
-   ============================================================ */
+/* ==========================================================================
+   14. INNER PAGE HERO
+   ========================================================================== */
 
 .page-hero {
+    position: relative;
+
     background: var(--navy-950);
 
     color: var(--paper-50);
 
     padding-block: clamp(3.5rem, 7vw, 5.5rem);
-
-    position: relative;
 
     overflow: hidden;
 }
@@ -814,12 +826,14 @@ h4 {
     max-width: 55ch;
 
     margin-top: 1rem;
+
+    color: var(--slate-300);
 }
 
 
-/* ============================================================
-   9. CARDS
-   ============================================================ */
+/* ==========================================================================
+   15. CARDS
+   ========================================================================== */
 
 .card {
     background: var(--paper-0);
@@ -849,7 +863,6 @@ h4 {
     height: 46px;
 
     display: flex;
-
     align-items: center;
     justify-content: center;
 
@@ -875,15 +888,17 @@ h4 {
 }
 
 
-/* ============================================================
-   VISION / MISSION
-   ============================================================ */
+/* ==========================================================================
+   16. VISION / MISSION
+   ========================================================================== */
 
 .vm-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 .vm-card {
+    position: relative;
+
     background: var(--navy-950);
 
     color: var(--paper-50);
@@ -891,8 +906,6 @@ h4 {
     border-radius: var(--radius-lg);
 
     padding: clamp(1.8rem, 3vw, 2.6rem);
-
-    position: relative;
 
     overflow: hidden;
 }
@@ -927,15 +940,11 @@ h4 {
 }
 
 .vm-card p {
-    color: var(--slate-300);
-
     position: relative;
-
     z-index: 1;
+
+    color: var(--slate-300);
 }
-
-
-/* Mission alternate card */
 
 .vm-card--alt {
     background: var(--gold-600);
@@ -944,11 +953,10 @@ h4 {
 }
 
 .vm-card--alt .eyebrow {
-    color: var(--navy-950);
-
     position: relative;
-
     z-index: 2;
+
+    color: var(--navy-950);
 }
 
 .vm-card--alt .eyebrow::before {
@@ -958,7 +966,6 @@ h4 {
 .vm-card--alt h3,
 .vm-card--alt p {
     position: relative;
-
     z-index: 2;
 }
 
@@ -970,36 +977,29 @@ h4 {
     border-color: rgba(14, 26, 63, 0.18);
 }
 
-@media (max-width: 720px) {
-    .vm-grid {
-        grid-template-columns: 1fr;
-    }
-}
 
-
-/* ============================================================
-   CORE VALUES
-   ============================================================ */
+/* ==========================================================================
+   17. CORE VALUES
+   ========================================================================== */
 
 .value-card {
     text-align: left;
 }
 
 
-/* ============================================================
-   OBJECTIVES
-   ============================================================ */
+/* ==========================================================================
+   18. OBJECTIVES
+   ========================================================================== */
 
 .objectives-list {
     display: flex;
-
     flex-direction: column;
 }
 
 .objective {
     display: grid;
 
-    grid-template-columns: 64px 1fr;
+    grid-template-columns: 64px minmax(0, 1fr);
 
     gap: 1.25rem;
 
@@ -1033,9 +1033,9 @@ h4 {
 }
 
 
-/* ============================================================
-   10. PROGRAM CARDS
-   ============================================================ */
+/* ==========================================================================
+   19. PROGRAM CARDS
+   ========================================================================== */
 
 .program-card {
     display: flex;
@@ -1046,6 +1046,20 @@ h4 {
 }
 
 .program-card .tag {
+    display: inline-block;
+
+    width: fit-content;
+
+    margin-bottom: 1rem;
+
+    padding: 0.3rem 0.6rem;
+
+    border-radius: 100px;
+
+    background: var(--gold-100);
+
+    color: var(--gold-600);
+
     font-family: var(--font-mono);
 
     font-size: 0.68rem;
@@ -1053,20 +1067,6 @@ h4 {
     letter-spacing: 0.08em;
 
     text-transform: uppercase;
-
-    color: var(--gold-600);
-
-    background: var(--gold-100);
-
-    padding: 0.3rem 0.6rem;
-
-    border-radius: 100px;
-
-    display: inline-block;
-
-    margin-bottom: 1rem;
-
-    width: fit-content;
 }
 
 .program-card h3 {
@@ -1074,23 +1074,23 @@ h4 {
 }
 
 .program-card ul {
-    margin-top: 1rem;
-
     display: flex;
 
     flex-direction: column;
 
     gap: 0.5rem;
+
+    margin-top: 1rem;
 }
 
 .program-card li {
-    font-size: 0.88rem;
-
-    color: var(--ink-600);
+    position: relative;
 
     padding-left: 1.2rem;
 
-    position: relative;
+    color: var(--ink-600);
+
+    font-size: 0.88rem;
 }
 
 .program-card li::before {
@@ -1116,9 +1116,9 @@ h4 {
 }
 
 
-/* ============================================================
-   11. TIMELINE
-   ============================================================ */
+/* ==========================================================================
+   20. TIMELINE
+   ========================================================================== */
 
 .timeline {
     position: relative;
@@ -1190,9 +1190,9 @@ h4 {
 }
 
 
-/* ============================================================
-   12. ACCREDITATION STRIP
-   ============================================================ */
+/* ==========================================================================
+   21. ACCREDITATION STRIP
+   ========================================================================== */
 
 .accred-strip {
     display: flex;
@@ -1236,12 +1236,12 @@ h4 {
 }
 
 
-/* ============================================================
-   13. ENROLLMENT STEPS + FORM PANEL
-   ============================================================ */
+/* ==========================================================================
+   22. ENROLLMENT / STEPS
+   ========================================================================== */
 
 .steps-grid {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
 .step-card {
@@ -1266,23 +1266,23 @@ h4 {
 }
 
 .enroll-panel {
-    background: var(--navy-950);
-
-    color: var(--paper-50);
-
-    border-radius: var(--radius-lg);
-
-    padding: clamp(2rem, 5vw, 3.5rem);
+    position: relative;
 
     display: grid;
 
-    grid-template-columns: 1.2fr 0.8fr;
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
 
     gap: 2.5rem;
 
     align-items: center;
 
-    position: relative;
+    padding: clamp(2rem, 5vw, 3.5rem);
+
+    background: var(--navy-950);
+
+    color: var(--paper-50);
+
+    border-radius: var(--radius-lg);
 
     overflow: hidden;
 }
@@ -1308,29 +1308,27 @@ h4 {
 }
 
 .enroll-panel p {
-    color: var(--slate-300);
+    max-width: 46ch;
 
     margin-top: 1rem;
 
-    max-width: 46ch;
+    color: var(--slate-300);
 }
 
 .enroll-panel .btn {
     position: relative;
-
     z-index: 1;
 }
 
 .enroll-form-note {
-    background: var(--navy-800);
-
-    border-radius: var(--radius-md);
+    position: relative;
+    z-index: 1;
 
     padding: 1.75rem;
 
-    position: relative;
+    background: var(--navy-800);
 
-    z-index: 1;
+    border-radius: var(--radius-md);
 }
 
 .enroll-form-note ul {
@@ -1344,13 +1342,13 @@ h4 {
 }
 
 .enroll-form-note li {
-    font-size: 0.9rem;
-
-    color: var(--slate-300);
+    position: relative;
 
     padding-left: 1.4rem;
 
-    position: relative;
+    color: var(--slate-300);
+
+    font-size: 0.9rem;
 }
 
 .enroll-form-note li::before {
@@ -1366,16 +1364,10 @@ h4 {
     font-size: 0.8rem;
 }
 
-@media (max-width: 860px) {
-    .enroll-panel {
-        grid-template-columns: 1fr;
-    }
-}
 
-
-/* ============================================================
-   14. FAQ ACCORDION
-   ============================================================ */
+/* ==========================================================================
+   23. FAQ
+   ========================================================================== */
 
 .faq-item {
     border-bottom: 1px solid var(--hairline);
@@ -1387,8 +1379,9 @@ h4 {
     display: flex;
 
     align-items: center;
-
     justify-content: space-between;
+
+    gap: 1rem;
 
     padding-block: 1.4rem;
 
@@ -1405,9 +1398,9 @@ h4 {
     width: 22px;
     height: 22px;
 
-    flex-shrink: 0;
-
     position: relative;
+
+    flex-shrink: 0;
 
     margin-left: 1rem;
 }
@@ -1420,7 +1413,9 @@ h4 {
 
     background: var(--gold-600);
 
-    transition: transform 0.3s var(--ease-out);
+    transition:
+        transform 0.3s var(--ease-out),
+        opacity 0.3s ease;
 }
 
 .faq-question .icon::before {
@@ -1437,8 +1432,8 @@ h4 {
     left: 50%;
     top: 0;
 
-    height: 100%;
     width: 1.5px;
+    height: 100%;
 
     transform: translateX(-50%);
 }
@@ -1460,13 +1455,13 @@ h4 {
 }
 
 .faq-answer p {
-    color: var(--slate-500);
+    max-width: 60ch;
 
     padding-bottom: 0;
 
-    font-size: 0.95rem;
+    color: var(--slate-500);
 
-    max-width: 60ch;
+    font-size: 0.95rem;
 }
 
 .faq-item[aria-expanded="true"] .faq-answer {
@@ -1474,26 +1469,145 @@ h4 {
 }
 
 
-/* ============================================================
-   BASE RESPONSIVE
-   ============================================================ */
+/* ==========================================================================
+   24. GENERAL RESPONSIVE — TABLET
+   ========================================================================== */
 
-@media (max-width: 900px) {
+@media (max-width: 1000px) {
+
+    .grid--4 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .hero-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .hero-portrait {
+        max-width: 420px;
+    }
+
+    .stat-strip {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .steps-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .enroll-panel {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* ==========================================================================
+   25. TABLET NAVIGATION
+   ========================================================================== */
+
+@media (max-width: 860px) {
+
+    .nav {
+        min-height: 72px;
+    }
+
+    .brand-mark {
+        width: 58px;
+        height: 58px;
+    }
+
+    .nav-toggle {
+        display: block;
+    }
+
+    .nav-links {
+        position: fixed;
+
+        inset: 0 0 0 28%;
+
+        display: flex;
+
+        flex-direction: column;
+
+        justify-content: center;
+
+        align-items: flex-start;
+
+        gap: 1.6rem;
+
+        padding: 2.5rem;
+
+        background: var(--navy-950);
+
+        transform: translateX(100%);
+
+        transition: transform 0.35s var(--ease-out);
+
+        box-shadow: -20px 0 50px rgba(0, 0, 0, 0.18);
+
+        overflow-y: auto;
+    }
+
+    .nav-links.is-open {
+        transform: translateX(0);
+    }
+
+    .nav-links a {
+        font-size: 1.15rem;
+    }
+
+    .nav-cta {
+        margin-left: 0;
+        margin-top: 1rem;
+    }
+
+    .vm-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* ==========================================================================
+   26. TABLET / SMALL LAPTOP
+   ========================================================================== */
+
+@media (max-width: 720px) {
+
+    .container {
+        width: min(100% - 2rem, var(--container-w));
+    }
+
+    .grid--3,
+    .grid--4 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .objective {
+        grid-template-columns: 48px minmax(0, 1fr);
+    }
+
+    .accred-strip {
+        justify-content: flex-start;
+    }
 
     .footer-grid {
         grid-template-columns: 1fr 1fr;
     }
-
-    .steps-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .benefits-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
 }
 
+
+/* ==========================================================================
+   27. MOBILE — MAIN RESPONSIVE ADJUSTMENTS
+   ========================================================================== */
+
 @media (max-width: 640px) {
+
+    html,
+    body {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: hidden;
+    }
 
     .container {
         width: min(100% - 2rem, var(--container-w));
@@ -1503,1655 +1617,1649 @@ h4 {
         padding-block: 3.5rem;
     }
 
+    .section--tight {
+        padding-block: 2.5rem;
+    }
+
+    /* Typography */
+
+    h1 {
+        font-size: clamp(2rem, 10vw, 2.8rem);
+    }
+
+    h2 {
+        font-size: clamp(1.7rem, 8vw, 2.2rem);
+    }
+
+    h3 {
+        font-size: 1.25rem;
+    }
+
+    .section-head {
+        margin-bottom: 2rem;
+    }
+
+    .section-head p {
+        font-size: 1rem;
+    }
+
+
+    /* Grid */
+
+    .grid--2,
+    .grid--3,
+    .grid--4 {
+        grid-template-columns: 1fr;
+    }
+
+
+    /* Header */
+
+    .nav {
+        min-height: 68px;
+
+        padding-block: 0.4rem;
+    }
+
+    .brand {
+        gap: 0.5rem;
+
+        min-width: 0;
+    }
+
+    .brand-mark {
+        width: 52px;
+        height: 52px;
+    }
+
+    .brand small {
+        font-size: 0.52rem;
+
+        letter-spacing: 0.1em;
+    }
+
+    .brand {
+        font-size: 1rem;
+    }
+
+    .nav-links {
+        inset: 0;
+
+        padding: 5.5rem 2rem 2rem;
+
+        align-items: flex-start;
+
+        gap: 1.4rem;
+    }
+
+    .nav-links a {
+        font-size: 1.1rem;
+    }
+
+
+    /* Hero */
+
+    .hero {
+        padding-block: 4rem;
+    }
+
+    .hero-grid {
+        grid-template-columns: 1fr;
+
+        gap: 2.5rem;
+    }
+
+    .hero h1 {
+        max-width: 100%;
+    }
+
+    .hero .lead {
+        font-size: 1rem;
+    }
+
+    .hero-ctas {
+        flex-direction: column;
+
+        align-items: stretch;
+
+        gap: 0.75rem;
+
+        margin-top: 1.8rem;
+    }
+
+    .hero-ctas .btn {
+        width: 100%;
+    }
+
+    .hero-portrait {
+        width: 100%;
+
+        max-width: 100%;
+
+        aspect-ratio: 1 / 1;
+
+        padding: 1rem;
+    }
+
+
+    /* Stats */
+
     .stat-strip {
-        gap: 1rem;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+
+        gap: 1.25rem;
+
+        margin-top: 3rem;
+
+        padding-top: 1.75rem;
     }
 
     .stat .num {
-        font-size: 1.6rem;
+        font-size: 1.55rem;
     }
+
+    .stat .label {
+        font-size: 0.65rem;
+    }
+
+
+    /* Page hero */
+
+    .page-hero {
+        padding-block: 3.25rem;
+    }
+
+    .page-hero h1 {
+        max-width: 100%;
+    }
+
+    .page-hero p {
+        font-size: 0.98rem;
+    }
+
+
+    /* Cards */
+
+    .card {
+        padding: 1.5rem;
+    }
+
+    .card:hover {
+        transform: none;
+    }
+
+
+    /* Vision / mission */
+
+    .vm-card {
+        padding: 1.6rem;
+    }
+
+
+    /* Objectives */
+
+    .objective {
+        grid-template-columns: 42px minmax(0, 1fr);
+
+        gap: 0.9rem;
+
+        padding-block: 1.25rem;
+    }
+
+    .objective .index {
+        font-size: 1.5rem;
+    }
+
+
+    /* Programs */
+
+    .program-card li {
+        font-size: 0.9rem;
+    }
+
+
+    /* Timeline */
+
+    .timeline {
+        padding-left: 1.8rem;
+    }
+
+    .timeline-item::before {
+        left: -1.8rem;
+    }
+
+
+    /* Enrollment */
 
     .steps-grid {
         grid-template-columns: 1fr;
     }
 
-    .benefits-grid {
-        grid-template-columns: 1fr;
+    .step-card {
+        padding-top: 2.4rem;
     }
+
+    .enroll-panel {
+        padding: 1.6rem;
+
+        grid-template-columns: 1fr;
+
+        gap: 1.5rem;
+    }
+
+    .enroll-form-note {
+        padding: 1.4rem;
+    }
+
+
+    /* FAQ */
+
+    .faq-question {
+        padding-block: 1.2rem;
+
+        font-size: 1rem;
+    }
+
+    .faq-question .icon {
+        width: 20px;
+        height: 20px;
+
+        margin-left: 0.5rem;
+    }
+}
+
+/* ==========================================================================
+   ECTS — ELEVATE CONSULTATION & TRAINING SERVICES
+   FINAL RESPONSIVE STYLES
+   PART 2 OF 2
+   ========================================================================== */
+
+
+/* ==========================================================================
+   28. CONTACT / INQUIRY SECTION
+   ========================================================================== */
+
+.contact-page {
+    overflow-x: hidden;
+}
+
+.contact-page .grid {
+    align-items: start;
+}
+
+.contact-form {
+    width: 100%;
+
+    background: var(--paper-0);
+
+    border: 1px solid var(--hairline);
+
+    border-radius: var(--radius-md);
+
+    padding: clamp(1.5rem, 4vw, 2.5rem);
+
+    box-shadow: var(--shadow-tight);
+}
+
+.contact-form h2 {
+    margin-bottom: 0.5rem;
+}
+
+.contact-form > p {
+    color: var(--slate-500);
+
+    margin-bottom: 1.75rem;
+}
+
+
+/* ==========================================================================
+   29. FORM GRID
+   ========================================================================== */
+
+.form-grid {
+    display: grid;
+
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    gap: 1.2rem;
+}
+
+.form-field {
+    min-width: 0;
+}
+
+.form-field--full {
+    grid-column: 1 / -1;
+}
+
+.form-field label {
+    display: block;
+
+    margin-bottom: 0.45rem;
+
+    font-size: 0.86rem;
+
+    font-weight: 600;
+
+    color: var(--navy-950);
+}
+
+.form-field input,
+.form-field textarea,
+.form-field select {
+    width: 100%;
+
+    border: 1px solid var(--slate-300);
+
+    border-radius: var(--radius-sm);
+
+    background: var(--paper-0);
+
+    padding: 0.85rem 0.95rem;
+
+    font-size: 0.95rem;
+
+    color: var(--ink-800);
+
+    outline: none;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+}
+
+.form-field input,
+.form-field select {
+    min-height: 48px;
+}
+
+.form-field textarea {
+    min-height: 150px;
+
+    resize: vertical;
+
+    line-height: 1.55;
+}
+
+.form-field input::placeholder,
+.form-field textarea::placeholder {
+    color: var(--slate-500);
+
+    opacity: 0.75;
+}
+
+.form-field input:focus,
+.form-field textarea:focus,
+.form-field select:focus {
+    border-color: var(--gold-600);
+
+    box-shadow: 0 0 0 3px rgba(11, 172, 166, 0.12);
+}
+
+.form-field input:disabled,
+.form-field textarea:disabled,
+.form-field select:disabled {
+    background: var(--paper-50);
+
+    cursor: not-allowed;
+
+    opacity: 0.7;
+}
+
+
+/* ==========================================================================
+   30. FORM ERROR / STATUS
+   ========================================================================== */
+
+.error-msg {
+    display: block;
+
+    margin-top: 0.35rem;
+
+    color: #b42318;
+
+    font-size: 0.78rem;
+}
+
+.form-status {
+    margin-top: 1rem;
+
+    padding: 0.8rem 1rem;
+
+    border-radius: var(--radius-sm);
+
+    font-size: 0.88rem;
+}
+
+.form-status:empty {
+    display: none;
+}
+
+.form-actions {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: flex-start;
+
+    gap: 1rem;
+
+    margin-top: 1.4rem;
+}
+
+.form-actions .btn {
+    min-height: 48px;
+}
+
+
+/* ==========================================================================
+   31. CONTACT INFORMATION
+   ========================================================================== */
+
+.contact-info {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 1rem;
+}
+
+.contact-info-item {
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 1rem;
+
+    padding: 1.1rem;
+
+    background: var(--paper-0);
+
+    border: 1px solid var(--hairline);
+
+    border-radius: var(--radius-md);
+}
+
+.contact-info-item .icon {
+    width: 42px;
+    height: 42px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    background: var(--gold-100);
+
+    color: var(--gold-600);
+
+    border-radius: var(--radius-sm);
+}
+
+.contact-info-item h3 {
+    margin-bottom: 0.2rem;
+
+    font-size: 1rem;
+}
+
+.contact-info-item p,
+.contact-info-item a {
+    color: var(--slate-500);
+
+    font-size: 0.9rem;
+
+    overflow-wrap: anywhere;
+}
+
+.contact-info-item a:hover {
+    color: var(--gold-600);
+}
+
+
+/* ==========================================================================
+   32. CTA BANNER
+   ========================================================================== */
+
+.cta-banner {
+    position: relative;
+
+    display: grid;
+
+    grid-template-columns: minmax(0, 1fr) auto;
+
+    align-items: center;
+
+    gap: 2rem;
+
+    padding: clamp(2rem, 5vw, 3.5rem);
+
+    background: var(--navy-950);
+
+    color: var(--paper-50);
+
+    border-radius: var(--radius-lg);
+
+    overflow: hidden;
+}
+
+.cta-banner::after {
+    content: "";
+
+    position: absolute;
+
+    width: 240px;
+    height: 240px;
+
+    right: -90px;
+    bottom: -120px;
+
+    border: 1px solid var(--hairline-on-dark);
+
+    border-radius: 50%;
+
+    pointer-events: none;
+}
+
+.cta-banner h2 {
+    position: relative;
+    z-index: 1;
+
+    margin-bottom: 0.6rem;
+}
+
+.cta-banner p {
+    position: relative;
+    z-index: 1;
+
+    max-width: 55ch;
+
+    color: var(--slate-300);
+}
+
+.cta-banner .btn {
+    position: relative;
+    z-index: 2;
+}
+
+
+/* ==========================================================================
+   33. FOOTER
+   ========================================================================== */
+
+.site-footer {
+    background: var(--navy-950);
+
+    color: var(--paper-50);
+
+    margin-top: 0;
+}
+
+.footer-grid {
+    display: grid;
+
+    grid-template-columns: 1.4fr repeat(3, 1fr);
+
+    gap: clamp(2rem, 4vw, 4rem);
+
+    padding-block: 4rem 3rem;
+}
+
+.footer-brand {
+    max-width: 300px;
+}
+
+.footer-brand .brand {
+    margin-bottom: 1rem;
+}
+
+.footer-brand p {
+    color: var(--slate-300);
+
+    font-size: 0.9rem;
+}
+
+.footer-title {
+    margin-bottom: 1rem;
+
+    font-family: var(--font-mono);
+
+    font-size: 0.72rem;
+
+    letter-spacing: 0.1em;
+
+    text-transform: uppercase;
+
+    color: var(--gold-500);
+}
+
+.footer-links {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 0.6rem;
+}
+
+.footer-links a {
+    color: var(--slate-300);
+
+    font-size: 0.88rem;
+
+    transition: color 0.2s ease;
+}
+
+.footer-links a:hover {
+    color: var(--gold-500);
+}
+
+.footer-bottom {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 1rem;
+
+    padding-block: 1.4rem;
+
+    border-top: 1px solid var(--hairline-on-dark);
+
+    color: var(--slate-300);
+
+    font-size: 0.78rem;
+}
+
+
+/* ==========================================================================
+   34. SOCIAL LINKS
+   ========================================================================== */
+
+.social-links {
+    display: flex;
+
+    align-items: center;
+
+    gap: 0.65rem;
+}
+
+.social-links a {
+    width: 38px;
+    height: 38px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid var(--hairline-on-dark);
+
+    border-radius: 50%;
+
+    color: var(--slate-300);
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.social-links a:hover {
+    background: var(--gold-600);
+
+    border-color: var(--gold-600);
+
+    color: var(--navy-950);
+
+    transform: translateY(-2px);
+}
+
+
+
+
+/* ==========================================================================
+   BACK TO TOP BUTTON
+   ========================================================================== */
+
+.back-top,
+.back-to-top {
+  position: fixed !important;
+
+  right: 24px !important;
+  bottom: 24px !important;
+
+  width: 48px !important;
+  height: 48px !important;
+
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  padding: 0 !important;
+  margin: 0 !important;
+
+  border: 1px solid rgba(255, 255, 255, 0.18) !important;
+  border-radius: 50% !important;
+
+  background: var(--gold-600) !important;
+  color: var(--navy-950) !important;
+
+  box-shadow:
+    0 8px 24px rgba(0, 0, 0, 0.22),
+    0 2px 8px rgba(0, 0, 0, 0.12) !important;
+
+  font-size: 0 !important;
+  line-height: 1 !important;
+
+  cursor: pointer;
+
+  opacity: 0;
+  visibility: hidden;
+
+  transform: translateY(10px);
+
+  transition:
+    opacity 0.25s ease,
+    visibility 0.25s ease,
+    transform 0.25s ease,
+    background 0.25s ease,
+    box-shadow 0.25s ease;
+
+  z-index: 9999 !important;
+}
+
+/* Show button */
+.back-top.is-visible,
+.back-to-top.is-visible,
+.back-top.visible,
+.back-to-top.visible {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: translateY(0) !important;
+}
+
+/* Arrow */
+.back-top::before,
+.back-to-top::before {
+  content: "↑";
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  height: 100%;
+
+  font-family: Arial, sans-serif;
+  font-size: 22px;
+  font-weight: 500;
+
+  color: var(--navy-950);
+
+  transform: translateY(-1px);
+}
+
+/* Remove duplicated text arrow if one exists */
+.back-top .arrow,
+.back-to-top .arrow {
+  display: none !important;
+}
+
+/* SVG arrow */
+.back-top svg,
+.back-to-top svg {
+  width: 18px;
+  height: 18px;
+
+  stroke: var(--navy-950);
+  stroke-width: 2.2;
+  fill: none;
+
+  pointer-events: none;
+}
+
+/* Hover */
+.back-top:hover,
+.back-to-top:hover {
+  background: var(--gold-500) !important;
+
+  transform: translateY(-4px) !important;
+
+  box-shadow:
+    0 12px 30px rgba(0, 0, 0, 0.28),
+    0 4px 10px rgba(0, 0, 0, 0.14) !important;
+}
+
+/* Keyboard focus */
+.back-top:focus-visible,
+.back-to-top:focus-visible {
+  outline: 2px solid var(--gold-500);
+  outline-offset: 4px;
+}
+
+/* Mobile */
+@media (max-width: 640px) {
+  .back-top,
+  .back-to-top {
+    right: 16px !important;
+    bottom: 16px !important;
+
+    width: 44px !important;
+    height: 44px !important;
+
+    border-radius: 50% !important;
+  }
+
+  .back-top::before,
+  .back-to-top::before {
+    font-size: 20px;
+  }
+
+  .back-top svg,
+  .back-to-top svg {
+    width: 17px;
+    height: 17px;
+  }
+}
+/* ==========================================================================
+   36. MOBILE CONTACT FORM
+   ========================================================================== */
+
+@media (max-width: 640px) {
+
+    .contact-form {
+        padding: 1.35rem;
+
+        border-radius: var(--radius-md);
+
+        box-shadow: none;
+    }
+
+    .contact-form > p {
+        margin-bottom: 1.35rem;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+
+        gap: 1rem;
+    }
+
+    .form-field--full {
+        grid-column: auto;
+    }
+
+    /*
+       16px prevents iPhone/iOS from automatically zooming
+       when the user taps an input.
+    */
+
+    .form-field input,
+    .form-field textarea,
+    .form-field select {
+        font-size: 16px;
+
+        padding: 0.85rem;
+    }
+
+    .form-field input,
+    .form-field select {
+        min-height: 50px;
+    }
+
+    .form-field textarea {
+        min-height: 135px;
+    }
+
+    .form-actions {
+        flex-direction: column;
+
+        align-items: stretch;
+
+        margin-top: 1.2rem;
+    }
+
+    .form-actions .btn {
+        width: 100%;
+    }
+
+    .contact-info {
+        gap: 0.8rem;
+    }
+
+    .contact-info-item {
+        padding: 1rem;
+
+        gap: 0.8rem;
+    }
+
+    .contact-info-item .icon {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+
+/* ==========================================================================
+   37. MOBILE CTA
+   ========================================================================== */
+
+@media (max-width: 640px) {
+
+    .cta-banner {
+        grid-template-columns: 1fr;
+
+        gap: 1.5rem;
+
+        padding: 1.7rem;
+
+        border-radius: var(--radius-md);
+    }
+
+    .cta-banner .btn {
+        width: 100%;
+    }
+
+    .cta-banner::after {
+        width: 180px;
+        height: 180px;
+
+        right: -100px;
+        bottom: -100px;
+    }
+}
+
+
+/* ==========================================================================
+   38. MOBILE FOOTER
+   ========================================================================== */
+
+@media (max-width: 640px) {
 
     .footer-grid {
         grid-template-columns: 1fr;
 
         gap: 2rem;
+
+        padding-block: 3rem 2rem;
+    }
+
+    .footer-brand {
+        max-width: none;
     }
 
     .footer-bottom {
         flex-direction: column;
 
         align-items: flex-start;
+
+        gap: 0.8rem;
+
+        padding-block: 1.2rem;
+    }
+
+    .social-links {
+        width: 100%;
+    }
+}
+
+
+
+/* ==========================================================================
+   40. VERY SMALL PHONES
+   ========================================================================== */
+
+@media (max-width: 480px) {
+
+    .container {
+        width: calc(100% - 1.5rem);
+    }
+
+    .section {
+        padding-block: 3rem;
+    }
+
+    .hero {
+        padding-block: 3.25rem;
+    }
+
+    .page-hero {
+        padding-block: 2.75rem;
+    }
+
+    .brand-mark {
+        width: 48px;
+        height: 48px;
+    }
+
+    .brand {
+        font-size: 0.95rem;
+    }
+
+    .brand small {
+        font-size: 0.48rem;
+    }
+
+    .nav-toggle {
+        width: 40px;
+        height: 40px;
+    }
+
+    .hero-ctas {
+        gap: 0.65rem;
+    }
+
+    .stat-strip {
+        gap: 1rem;
+    }
+
+    .stat .num {
+        font-size: 1.4rem;
+    }
+
+    .stat .label {
+        font-size: 0.6rem;
+
+        line-height: 1.4;
+    }
+
+    .card {
+        padding: 1.3rem;
+    }
+
+    .vm-card {
+        padding: 1.4rem;
+    }
+
+    .objective {
+        grid-template-columns: 36px minmax(0, 1fr);
+
+        gap: 0.75rem;
+    }
+
+    .objective .index {
+        font-size: 1.35rem;
+    }
+
+    .contact-form {
+        padding: 1.15rem;
+    }
+
+    .contact-info-item {
+        align-items: flex-start;
+    }
+
+    .contact-info-item .icon {
+        width: 36px;
+        height: 36px;
+    }
+
+    .cta-banner {
+        padding: 1.4rem;
+    }
+
+    .back-top {
+        width: 43px;
+        height: 43px;
+
+        right: max(12px, env(safe-area-inset-right));
+
+        bottom: max(12px, env(safe-area-inset-bottom));
+    }
+}
+
+
+/* ==========================================================================
+   41. EXTRA SMALL PHONES
+   ========================================================================== */
+
+@media (max-width: 360px) {
+
+    .container {
+        width: calc(100% - 1.25rem);
+    }
+
+    .brand-mark {
+        width: 44px;
+        height: 44px;
+    }
+
+    .brand {
+        font-size: 0.88rem;
+    }
+
+    .brand small {
+        display: none;
+    }
+
+    .hero {
+        padding-block: 2.75rem;
+    }
+
+    .hero h1 {
+        font-size: 2rem;
+    }
+
+    .stat-strip {
+        grid-template-columns: 1fr 1fr;
+
+        gap: 0.75rem;
+    }
+
+    .stat .num {
+        font-size: 1.3rem;
+    }
+
+    .contact-form {
+        padding: 1rem;
+    }
+
+    .form-field input,
+    .form-field textarea,
+    .form-field select {
+        padding-inline: 0.75rem;
+    }
+}
+
+
+/* ==========================================================================
+   42. TOUCH DEVICES
+   ========================================================================== */
+
+@media (hover: none) {
+
+    .btn:hover {
+        transform: none;
+    }
+
+    .card:hover {
+        transform: none;
+
+        box-shadow: none;
+    }
+
+    .social-links a:hover {
+        transform: none;
+    }
+
+    .back-top:hover {
+        transform: none;
+    }
+}
+
+
+/* ==========================================================================
+   43. REDUCED MOTION
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+
+        animation-iteration-count: 1 !important;
+
+        transition-duration: 0.01ms !important;
+
+        scroll-behavior: auto !important;
+    }
+}
+
+
+/* ==========================================================================
+   44. FINAL MOBILE SAFETY OVERRIDES
+   ========================================================================== */
+
+/*
+   These rules are intentionally at the VERY END.
+   They prevent any component from accidentally creating horizontal
+   scrolling on phones.
+*/
+
+@media (max-width: 640px) {
+
+    .hero,
+    .page-hero,
+    .section,
+    .site-header,
+    .site-footer,
+    .cta-banner,
+    .contact-page {
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+
+    img,
+    svg,
+    video,
+    iframe {
+        max-width: 100%;
+    }
+
+    table {
+        display: block;
+
+        max-width: 100%;
+
+        overflow-x: auto;
+    }
+
+    pre,
+    code {
+        max-width: 100%;
+
+        overflow-x: auto;
+    }
+
+    .btn {
+        max-width: 100%;
+    }
+
+    .form-field,
+    .contact-info-item,
+    .card,
+    .vm-card,
+    .program-card {
+        min-width: 0;
     }
 }
 /* ==========================================================================
-   ECTS ACADEMY — FINAL STYLES
-   PART 2
+   CPD ACCREDITATION POPUP
    ========================================================================== */
 
-/* ==========================================================================
-   9. CARDS
-   ========================================================================== */
-
-.card {
-  background: var(--paper-0);
-  border: 1px solid var(--hairline);
-  border-radius: var(--radius-md);
-  padding: 1.9rem;
-  transition:
-    transform 0.3s var(--ease-out),
-    box-shadow 0.3s var(--ease-out),
-    border-color 0.3s ease;
-}
-
-.card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-tight);
-  border-color: transparent;
-}
-
-.card-icon {
-  width: 46px;
-  height: 46px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--gold-100);
-  border-radius: var(--radius-sm);
-  margin-bottom: 1.1rem;
-  color: var(--gold-600);
-}
-
-.card h3 {
-  margin-bottom: 0.6rem;
-  font-size: 1.15rem;
-}
-
-.card p {
-  color: var(--slate-500);
-  font-size: 0.95rem;
-}
-
-
-/* ==========================================================================
-   VISION / MISSION
-   ========================================================================== */
-
-.vm-grid {
-  grid-template-columns: repeat(2, 1fr);
-}
-
-.vm-card {
-  background: var(--navy-950);
-  color: var(--paper-50);
-  border-radius: var(--radius-lg);
-  padding: clamp(1.8rem, 3vw, 2.6rem);
-  position: relative;
-  overflow: hidden;
-}
-
-.vm-card::before {
-  content: "";
-  position: absolute;
-  top: -40px;
-  right: -40px;
-  width: 140px;
-  height: 140px;
-  border: 1px solid var(--hairline-on-dark);
-  border-radius: 50%;
-}
-
-.vm-card .eyebrow {
-  color: var(--gold-500);
-}
-
-.vm-card .eyebrow::before {
-  background: var(--gold-500);
-}
-
-.vm-card h3 {
-  margin-top: 0.75rem;
-  margin-bottom: 0.9rem;
-}
-
-.vm-card p {
-  color: var(--slate-300);
-  position: relative;
-  z-index: 1;
-}
-
-.vm-card--alt {
-  background: var(--gold-600);
-  color: var(--navy-950);
-}
-
-.vm-card--alt .eyebrow {
-  color: var(--navy-950);
-  position: relative;
-  z-index: 2;
-}
-
-.vm-card--alt .eyebrow::before {
-  background: var(--navy-950);
-}
-
-.vm-card--alt h3,
-.vm-card--alt p {
-  position: relative;
-  z-index: 2;
-}
-
-.vm-card--alt p {
-  color: var(--navy-800);
-}
-
-.vm-card--alt::before {
-  border-color: rgba(14, 26, 63, 0.18);
-}
-
-@media (max-width: 720px) {
-  .vm-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-
-/* ==========================================================================
-   CORE VALUES
-   ========================================================================== */
-
-.value-card {
-  text-align: left;
-}
-
-
-/* ==========================================================================
-   OBJECTIVES
-   ========================================================================== */
-
-.objectives-list {
-  display: flex;
-  flex-direction: column;
-}
-
-.objective {
-  display: grid;
-  grid-template-columns: 64px 1fr;
-  gap: 1.25rem;
-  padding-block: 1.5rem;
-  border-top: 1px solid var(--hairline);
-}
-
-.objective:last-child {
-  border-bottom: 1px solid var(--hairline);
-}
-
-.objective .index {
-  font-family: var(--font-display);
-  font-size: 1.8rem;
-  color: var(--gold-600);
-}
-
-.objective h3 {
-  font-size: 1.05rem;
-  margin-bottom: 0.4rem;
-}
-
-.objective p {
-  color: var(--slate-500);
-  font-size: 0.95rem;
-}
-
-
-/* ==========================================================================
-   10. PROGRAM CARDS
-   ========================================================================== */
-
-.program-card {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-}
-
-.program-card .tag {
-  font-family: var(--font-mono);
-  font-size: 0.68rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--paper-0);
-  background: var(--navy-900);
-  padding: 0.3rem 0.6rem;
-  border-radius: 100px;
-  display: inline-block;
-  margin-bottom: 1rem;
-  width: fit-content;
-}
-
-.program-card h3 {
-  margin-bottom: 0.5rem;
-}
-
-.program-card ul {
-  margin-top: 1rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.program-card li {
-  font-size: 0.88rem;
-  color: var(--ink-600);
-  padding-left: 1.2rem;
-  position: relative;
-}
-
-.program-card li::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0.5em;
-  width: 6px;
-  height: 6px;
-  background: var(--gold-600);
-  transform: rotate(45deg);
-}
-
-.program-card .btn--ghost {
-  margin-top: auto;
-  padding-top: 1.5rem;
-}
-
-
-/* ==========================================================================
-   11. TIMELINE
-   ========================================================================== */
-
-.timeline {
-  position: relative;
-  padding-left: 2.2rem;
-}
-
-.timeline::before {
-  content: "";
-  position: absolute;
-  left: 5px;
-  top: 6px;
-  bottom: 6px;
-  width: 1px;
-  background: var(--hairline);
-}
-
-.timeline-item {
-  position: relative;
-  padding-bottom: 2.5rem;
-}
-
-.timeline-item:last-child {
-  padding-bottom: 0;
-}
-
-.timeline-item::before {
-  content: "";
-  position: absolute;
-  left: -2.2rem;
-  top: 4px;
-  width: 11px;
-  height: 11px;
-  border-radius: 50%;
-  background: var(--gold-600);
-  box-shadow: 0 0 0 4px var(--gold-100);
-}
-
-.timeline-item .year {
-  font-family: var(--font-mono);
-  font-size: 0.85rem;
-  color: var(--gold-600);
-}
-
-.timeline-item h3 {
-  margin-top: 0.3rem;
-  margin-bottom: 0.4rem;
-}
-
-.timeline-item p {
-  color: var(--slate-500);
-  font-size: 0.95rem;
-}
-
-
-/* ==========================================================================
-   12. ACCREDITATION STRIP
-   ========================================================================== */
-
-.accred-strip {
-  display: flex;
-  flex-wrap: wrap;
-  gap: clamp(1.5rem, 4vw, 3rem);
-  justify-content: space-between;
-  align-items: center;
-  padding-block: 2rem;
-}
-
-.accred-item {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  font-family: var(--font-mono);
-  font-size: 0.78rem;
-  letter-spacing: 0.04em;
-  color: var(--slate-500);
-  text-transform: uppercase;
-}
-
-.accred-item svg {
-  width: 20px;
-  height: 20px;
-  color: var(--gold-600);
-  flex-shrink: 0;
-}
-
-
-/* ==========================================================================
-   13. ENROLLMENT STEPS
-   ========================================================================== */
-
-.steps-grid {
-  grid-template-columns: repeat(4, 1fr);
-}
-
-.step-card {
-  position: relative;
-  padding-top: 2.6rem;
-}
-
-.step-card .index {
-  position: absolute;
-  top: 0;
-  left: 1.9rem;
-  font-family: var(--font-display);
-  font-size: 2.2rem;
-  color: var(--gold-100);
-  -webkit-text-stroke: 1px var(--gold-600);
-}
-
-
-/* ==========================================================================
-   ENROLLMENT PANEL
-   ========================================================================== */
-
-.enroll-panel {
-  background: var(--navy-950);
-  color: var(--paper-50);
-  border-radius: var(--radius-lg);
-  padding: clamp(2rem, 5vw, 3.5rem);
-  display: grid;
-  grid-template-columns: 1.2fr 0.8fr;
-  gap: 2.5rem;
-  align-items: center;
-  position: relative;
-  overflow: hidden;
-}
-
-.enroll-panel::after {
-  content: "";
-  position: absolute;
-  right: -60px;
-  bottom: -60px;
-  width: 220px;
-  height: 220px;
-  border: 1px solid var(--hairline-on-dark);
-  border-radius: 50%;
-}
-
-.enroll-panel h2 {
-  margin-top: 0.5rem;
-}
-
-.enroll-panel p {
-  color: var(--slate-300);
-  margin-top: 1rem;
-  max-width: 46ch;
-}
-
-.enroll-panel .btn {
-  position: relative;
-  z-index: 1;
-}
-
-.enroll-form-note {
-  background: var(--navy-800);
-  border-radius: var(--radius-md);
-  padding: 1.75rem;
-  position: relative;
-  z-index: 1;
-}
-
-.enroll-form-note ul {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-  margin-top: 1rem;
-}
-
-.enroll-form-note li {
-  font-size: 0.9rem;
-  color: var(--slate-300);
-  padding-left: 1.4rem;
-  position: relative;
-}
-
-.enroll-form-note li::before {
-  content: "✓";
-  position: absolute;
-  left: 0;
-  top: 0;
-  color: var(--gold-500);
-  font-size: 0.8rem;
-}
-
-
-/* ==========================================================================
-   14. FAQ
-   ========================================================================== */
-
-.faq-item {
-  border-bottom: 1px solid var(--hairline);
-}
-
-.faq-question {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding-block: 1.4rem;
-  text-align: left;
-  font-family: var(--font-display);
-  font-size: 1.05rem;
-  color: var(--navy-950);
-}
-
-.faq-question .icon {
-  width: 22px;
-  height: 22px;
-  flex-shrink: 0;
-  position: relative;
-  margin-left: 1rem;
-}
-
-.faq-question .icon::before,
-.faq-question .icon::after {
-  content: "";
-  position: absolute;
-  background: var(--gold-600);
-  transition: transform 0.3s var(--ease-out);
-}
-
-.faq-question .icon::before {
-  top: 50%;
-  left: 0;
-  width: 100%;
-  height: 1.5px;
-  transform: translateY(-50%);
-}
-
-.faq-question .icon::after {
-  left: 50%;
-  top: 0;
-  height: 100%;
-  width: 1.5px;
-  transform: translateX(-50%);
-}
-
-.faq-item[aria-expanded="true"] .faq-question .icon::after {
-  transform: translateX(-50%) rotate(90deg);
-  opacity: 0;
-}
-
-.faq-answer {
-  max-height: 0;
-  overflow: hidden;
-  transition:
-    max-height 0.35s var(--ease-out),
-    padding-bottom 0.35s var(--ease-out);
-}
-
-.faq-answer p {
-  color: var(--slate-500);
-  padding-bottom: 0;
-  font-size: 0.95rem;
-  max-width: 60ch;
-}
-
-.faq-item[aria-expanded="true"] .faq-answer {
-  padding-bottom: 1.4rem;
-}
-
-
-/* ==========================================================================
-   15. ENROLLMENT FORM
-   ========================================================================== */
-
-.enrollment-container {
-  max-width: 1000px;
-  margin-inline: auto;
-}
-
-.enrollment-card {
-  background: var(--paper-0);
-  border: 1px solid var(--hairline);
-  border-radius: var(--radius-lg);
-  padding: clamp(1.5rem, 4vw, 3rem);
-  box-shadow: var(--shadow-soft);
-}
-
-.form-section {
-  padding-bottom: 2.5rem;
-  margin-bottom: 2.5rem;
-  border-bottom: 1px solid var(--hairline);
-}
-
-.form-section:last-of-type {
-  border-bottom: none;
-  margin-bottom: 0;
-}
-
-.form-section-heading {
-  display: flex;
-  align-items: flex-start;
-  gap: 1rem;
-  margin-bottom: 1.8rem;
-}
-
-.form-section-heading h3 {
-  margin: 0;
-  font-size: var(--fs-h3);
-}
-
-.form-section-heading p {
-  margin-top: 0.25rem;
-  color: var(--slate-500);
-  font-size: 0.9rem;
-}
-
-.form-number {
-  width: 42px;
-  height: 42px;
-  min-width: 42px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  background: var(--gold-100);
-  color: var(--gold-600);
-  font-family: var(--font-mono);
-  font-size: 0.78rem;
-  font-weight: 600;
-}
-
-
-/* ==========================================================================
-   ENHANCED ENROLLMENT FORM
-   ========================================================================== */
-
-.enrollment-form .form-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1.5rem;
-}
-
-.enrollment-form .form-field {
-  display: flex;
-  flex-direction: column;
-  gap: 0.55rem;
-  margin-bottom: 0;
-}
-
-.enrollment-form .form-field label {
-  font-size: 0.88rem;
-  font-weight: 600;
-  color: var(--navy-950);
-}
-
-.enrollment-form .form-field input,
-.enrollment-form .form-field textarea,
-.enrollment-form .form-field select {
-  width: 100%;
-  padding: 0.95rem 1rem;
-  border: 1.5px solid var(--slate-300);
-  border-radius: 10px;
-  background: #ffffff;
-  color: var(--ink-800);
-  outline: none;
-  transition:
-    border-color 0.2s ease,
-    box-shadow 0.2s ease,
-    transform 0.2s ease;
-}
-
-.enrollment-form .form-field input,
-.enrollment-form .form-field select {
-  min-height: 52px;
-}
-
-.enrollment-form .form-field textarea {
-  min-height: 145px;
-  resize: vertical;
-}
-
-.enrollment-form .form-field input:hover,
-.enrollment-form .form-field textarea:hover,
-.enrollment-form .form-field select:hover {
-  border-color: var(--gold-600);
-}
-
-.enrollment-form .form-field input:focus,
-.enrollment-form .form-field textarea:focus,
-.enrollment-form .form-field select:focus {
-  border-color: var(--gold-600);
-  box-shadow: 0 0 0 4px rgba(11, 172, 166, 0.12);
-}
-
-.enrollment-form .form-field input::placeholder,
-.enrollment-form .form-field textarea::placeholder {
-  color: var(--slate-500);
-  opacity: 0.7;
-}
-
-.enrollment-form .form-field input[type="date"] {
-  color-scheme: light;
-}
-
-.enrollment-form .error-message {
-  display: block;
-  min-height: 18px;
-  margin: 0;
-  color: #c0392b;
-  font-size: 0.78rem;
-}
-
-.enrollment-form .form-field input.input-error,
-.enrollment-form .form-field select.input-error,
-.enrollment-form .form-field textarea.input-error {
-  border-color: #c0392b;
-  box-shadow: 0 0 0 3px rgba(192, 57, 43, 0.08);
-}
-
-.enrollment-form .form-field input.input-valid,
-.enrollment-form .form-field select.input-valid,
-.enrollment-form .form-field textarea.input-valid {
-  border-color: var(--gold-600);
-}
-
-
-/* ==========================================================================
-   ENROLLMENT SUBMIT
-   ========================================================================== */
-
-.form-submit {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  margin-top: 2rem;
-}
-
-.form-submit .btn {
-  border: none;
-}
-
-.required-note {
-  color: var(--slate-500);
-  font-size: 0.82rem;
-}
-
-
-/* ==========================================================================
-   STATUS MESSAGE
-   ========================================================================== */
-
-.form-status {
-  display: none;
-  margin-top: 1.5rem;
-  padding: 1rem 1.2rem;
-  border-radius: var(--radius-sm);
-  font-size: 0.9rem;
-  line-height: 1.5;
-}
-
-.form-status.success {
-  display: block;
-  color: #17663b;
-  background: #e8f7ee;
-  border: 1px solid #b9e4c9;
-}
-
-.form-status.error {
-  display: block;
-  color: #9d2920;
-  background: #fbeceb;
-  border: 1px solid #edc1bd;
-}
-
-
-/* ==========================================================================
-   ENROLLMENT BENEFITS
-   ========================================================================== */
-
-.benefits-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: clamp(1.25rem, 2.5vw, 2rem);
-}
-
-.benefit-card {
-  background: var(--paper-0);
-  border: 1px solid var(--hairline);
-  border-radius: var(--radius-md);
-  padding: 1.9rem;
-  transition:
-    transform 0.3s var(--ease-out),
-    box-shadow 0.3s var(--ease-out),
-    border-color 0.3s ease;
-}
-
-.benefit-card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-tight);
-  border-color: transparent;
-}
-
-.benefit-icon {
-  width: 42px;
-  height: 42px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--gold-100);
-  border-radius: var(--radius-sm);
-  margin-bottom: 1.1rem;
-  color: var(--gold-600);
-  font-weight: 700;
-}
-
-.benefit-card h3 {
-  margin-bottom: 0.6rem;
-  font-size: 1.15rem;
-}
-
-.benefit-card p {
-  color: var(--slate-500);
-  font-size: 0.95rem;
-}
-
-
-/* ==========================================================================
-   16. CONTACT FORM
-   ========================================================================== */
-
-.form-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1.2rem 1.5rem;
-}
-
-.form-field {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  margin-bottom: 1.3rem;
-}
-
-.form-field--full {
-  grid-column: 1 / -1;
-}
-
-.form-field label {
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: var(--ink-800);
-}
-
-.form-field input,
-.form-field textarea,
-.form-field select {
-  padding: 0.85rem 1rem;
-  border: 1.5px solid var(--hairline);
-  border-radius: var(--radius-sm);
-  background: var(--paper-0);
-  transition:
-    border-color 0.2s ease,
-    box-shadow 0.2s ease;
-  outline: none;
-}
-
-.form-field textarea {
-  resize: vertical;
-  min-height: 140px;
-}
-
-.form-field input:focus,
-.form-field textarea:focus,
-.form-field select:focus {
-  border-color: var(--gold-600);
-  box-shadow: 0 0 0 3px var(--gold-100);
-}
-
-
-/* ==========================================================================
-   17. CONTACT INFORMATION
-   ========================================================================== */
-
-/* Contact information is now designed to sit UNDER the form */
-
-.contact-section {
-  margin-top: 2rem;
-}
-
-.contact-info {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1rem;
-  width: 100%;
-}
-
-.contact-row {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  padding: 1rem 1.1rem;
-  background: var(--paper-0);
-  border: 1px solid var(--hairline);
-  border-radius: var(--radius-md);
-  transition:
-    transform 0.25s var(--ease-out),
-    box-shadow 0.25s ease,
-    border-color 0.25s ease;
-}
-
-.contact-row:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-tight);
-  border-color: var(--gold-600);
-}
-
-.contact-icon {
-  width: 34px;
-  height: 34px;
-  min-width: 34px;
-  background: var(--gold-100);
-  color: var(--gold-600);
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-}
-
-.contact-icon svg {
-  width: 17px;
-  height: 17px;
-}
-
-.contact-row h4 {
-  font-family: var(--font-body);
-  font-size: 0.82rem;
-  font-weight: 700;
-  margin-bottom: 0.1rem;
-  color: var(--navy-950);
-}
-
-.contact-row p,
-.contact-row a {
-  color: var(--slate-500);
-  font-size: 0.82rem;
-  line-height: 1.4;
-}
-
-.contact-row a:hover {
-  color: var(--gold-600);
-}
-
-
-/* ==========================================================================
-   18. CTA BANNER
-   ========================================================================== */
-
-.cta-banner {
-  background: var(--navy-950);
-  color: var(--paper-50);
-  border-radius: var(--radius-lg);
-  padding: clamp(2.5rem, 6vw, 4rem);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 2rem;
-}
-
-.cta-banner h2 {
-  color: var(--paper-0);
-  margin-bottom: 0.6rem;
-}
-
-.cta-banner p {
-  color: var(--slate-300);
-  max-width: 52ch;
-}
-
-
-/* ==========================================================================
-   19. FOOTER
-   ========================================================================== */
-
-.site-footer {
-  background: var(--navy-950);
-  color: var(--slate-300);
-  padding-top: 4rem;
-}
-
-.footer-grid {
-  display: grid;
-  grid-template-columns: 1.4fr 1fr 1fr 1fr;
-  gap: 2.5rem;
-  padding-bottom: 3.5rem;
-}
-
-.footer-brand p {
-  margin-top: 1rem;
-  max-width: 32ch;
-  font-size: 0.88rem;
-  color: var(--slate-300);
-}
-
-.footer-heading {
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: var(--gold-500);
-  margin-bottom: 1.1rem;
-}
-
-.footer-links {
-  display: flex;
-  flex-direction: column;
-  gap: 0.6rem;
-}
-
-.footer-links a {
-  font-size: 0.88rem;
-  color: var(--slate-300);
-  transition: color 0.2s ease;
-}
-
-.footer-links a:hover {
-  color: var(--gold-500);
-}
-
-.footer-bottom {
-  border-top: 1px solid var(--hairline-on-dark);
-  padding-block: 1.3rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  flex-wrap: wrap;
-}
-
-.footer-bottom p {
-  font-size: 0.76rem;
-  color: var(--slate-300);
-}
-
-
-/* ==========================================================================
-   20. BACK TO TOP
-   ========================================================================== */
-
-/* Completely redesigned so the arrow is clean and centered */
-
-.back-top {
+.cpd-popup {
   position: fixed;
-  right: 1.5rem;
-  bottom: 1.5rem;
-
-  width: 46px;
-  height: 46px;
+  inset: 0;
+  z-index: 10000;
 
   display: flex;
   align-items: center;
   justify-content: center;
 
-  background: var(--gold-600);
-  color: var(--navy-950);
-
-  border: none;
-  border-radius: 50%;
+  padding: 24px;
 
   opacity: 0;
   visibility: hidden;
-
-  transform: translateY(15px);
+  pointer-events: none;
 
   transition:
-    opacity 0.25s ease,
-    visibility 0.25s ease,
-    transform 0.25s var(--ease-out),
-    background 0.2s ease,
-    box-shadow 0.2s ease;
-
-  z-index: 1000;
-
-  box-shadow: 0 8px 25px rgba(14, 26, 63, 0.25);
+    opacity 0.3s ease,
+    visibility 0.3s ease;
 }
 
-.back-top.is-visible {
+.cpd-popup.is-open {
   opacity: 1;
   visibility: visible;
-  transform: translateY(0);
-}
-
-.back-top:hover {
-  background: var(--gold-500);
-  transform: translateY(-3px);
-  box-shadow: 0 12px 30px rgba(14, 26, 63, 0.3);
-}
-
-.back-top:focus-visible {
-  outline: 2px solid var(--gold-600);
-  outline-offset: 4px;
-}
-
-/* Handles an actual SVG arrow */
-
-.back-top svg {
-  width: 19px;
-  height: 19px;
-  stroke: currentColor;
-  stroke-width: 2.5;
-  fill: none;
-  pointer-events: none;
-}
-
-/* Handles a text arrow if your HTML uses one */
-
-.back-top .arrow {
-  display: block;
-  font-size: 1.35rem;
-  line-height: 1;
-  font-weight: 700;
-  transform: translateY(-1px);
+  pointer-events: auto;
 }
 
 
-/* ==========================================================================
-   21. REVEAL ANIMATION
-   ========================================================================== */
+/* ---------- BACKDROP ---------- */
 
-.reveal {
-  opacity: 0;
-  transform: translateY(20px);
-  transition:
-    opacity 0.6s var(--ease-out),
-    transform 0.6s var(--ease-out);
-}
+.cpd-popup-overlay {
+  position: absolute;
+  inset: 0;
 
-.reveal.is-visible {
-  opacity: 1;
-  transform: translateY(0);
+  background: rgba(7, 15, 38, 0.78);
+
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
 }
 
 
-/* ==========================================================================
-   22. ENROLLMENT / COURSE INQUIRY PAGE
-   ========================================================================== */
+/* ---------- POPUP CARD ---------- */
 
-.nav-container {
-  width: min(100% - 2.5rem, var(--container-w));
-  margin-inline: auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding-block: 1rem;
-  color: var(--paper-50);
+.cpd-popup-card {
+  position: relative;
+  z-index: 1;
+
+  width: min(560px, 100%);
+
+  padding: 42px 42px 38px;
+
+  background: var(--navy-950);
+
+  border: 1px solid rgba(255, 255, 255, 0.12);
+
+  border-radius: 18px;
+
+  box-shadow:
+    0 30px 80px rgba(0, 0, 0, 0.4);
+
+  text-align: center;
+
+  transform: translateY(20px) scale(0.97);
+
+  transition: transform 0.3s ease;
 }
 
-.brand-logo {
-  width: 56px;
-  height: 56px;
-  flex-shrink: 0;
+.cpd-popup.is-open .cpd-popup-card {
+  transform: translateY(0) scale(1);
+}
+
+
+/* ---------- CLOSE BUTTON ---------- */
+
+.cpd-popup-close {
+  position: absolute;
+
+  top: 16px;
+  right: 18px;
+
+  width: 36px;
+  height: 36px;
+
   display: flex;
   align-items: center;
   justify-content: center;
-}
 
-.brand-logo img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
+  padding: 0;
 
-.brand-text {
-  display: flex;
-  flex-direction: column;
-}
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 50%;
 
-.brand-title {
-  font-family: var(--font-display);
-  font-size: 1.15rem;
-  color: var(--paper-0);
-  letter-spacing: 0.01em;
-}
+  background: transparent;
+  color: rgba(255, 255, 255, 0.75);
 
-.brand-subtitle {
-  font-family: var(--font-mono);
-  font-size: 0.6rem;
-  letter-spacing: 0.12em;
-  color: var(--gold-500);
-  text-transform: uppercase;
-  margin-top: 2px;
-}
+  font-size: 25px;
+  line-height: 1;
 
-.main-nav {
-  display: flex;
-  align-items: center;
-  gap: clamp(1.2rem, 2vw, 2.2rem);
-}
+  cursor: pointer;
 
-.main-nav a {
-  font-size: 0.92rem;
-  font-weight: 500;
-  color: var(--slate-300);
-  position: relative;
-  padding-block: 0.3rem;
-  transition: color 0.2s ease;
-}
-
-.main-nav a:hover,
-.main-nav a.active {
-  color: var(--paper-0);
-}
-
-.main-nav a.active {
-  border-bottom: 2px solid var(--gold-600);
-}
-
-
-/* ==========================================================================
-   INQUIRY HERO
-   ========================================================================== */
-
-.inquiry-hero {
-  background: var(--navy-950);
-  color: var(--paper-50);
-  padding-block: clamp(3.5rem, 7vw, 5.5rem);
-  position: relative;
-  overflow: hidden;
-}
-
-.inquiry-hero-content {
-  width: min(100% - 2.5rem, var(--container-w));
-  margin-inline: auto;
-}
-
-.inquiry-hero .eyebrow {
-  color: var(--gold-500);
-}
-
-.inquiry-hero .eyebrow::before {
-  background: var(--gold-500);
-}
-
-.inquiry-hero h1 {
-  font-family: var(--font-display);
-  font-size: var(--fs-h1);
-  color: var(--paper-0);
-  line-height: 1.12;
-  font-weight: 600;
-  max-width: 20ch;
-  margin-top: 0.75rem;
-}
-
-.inquiry-hero h1 span {
-  display: block;
-  color: var(--gold-500);
-}
-
-.inquiry-hero p {
-  max-width: 55ch;
-  margin-top: 1rem;
-  color: var(--slate-300);
-  font-size: var(--fs-lead);
-}
-
-
-/* ==========================================================================
-   INQUIRY SECTION
-   ========================================================================== */
-
-.inquiry-section {
-  padding-block: var(--section-pad);
-  background: var(--paper-50);
-}
-
-.inquiry-container {
-  width: min(100% - 2.5rem, var(--container-w));
-  margin-inline: auto;
-}
-
-.inquiry-intro {
-  max-width: 640px;
-  margin-bottom: clamp(2rem, 4vw, 3rem);
-}
-
-.section-label {
-  font-family: var(--font-mono);
-  font-size: var(--fs-eyebrow);
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--gold-600);
-  display: inline-flex;
-  align-items: center;
-  gap: 0.6rem;
-}
-
-.section-label::before {
-  content: "";
-  width: 22px;
-  height: 1px;
-  background: var(--gold-600);
-  display: inline-block;
-}
-
-.inquiry-intro h2 {
-  font-family: var(--font-display);
-  font-size: var(--fs-h2);
-  color: var(--navy-950);
-  margin-top: 0.75rem;
-}
-
-.inquiry-intro p {
-  margin-top: 1rem;
-  color: var(--slate-500);
-  font-size: var(--fs-lead);
-}
-
-
-/* ==========================================================================
-   INQUIRY FORM
-   ========================================================================== */
-
-.inquiry-form-wrapper {
-  background: var(--paper-0);
-  border: 1px solid var(--hairline);
-  border-radius: var(--radius-lg);
-  padding: clamp(1.5rem, 4vw, 3rem);
-  box-shadow: var(--shadow-soft);
-}
-
-.form-heading {
-  display: flex;
-  align-items: flex-start;
-  gap: 1rem;
-  margin-bottom: 1.8rem;
-}
-
-.form-heading h3 {
-  font-family: var(--font-display);
-  color: var(--navy-950);
-  font-size: var(--fs-h3);
-  margin: 0;
-}
-
-.form-heading p {
-  margin-top: 0.25rem;
-  color: var(--slate-500);
-  font-size: 0.9rem;
-}
-
-.course-inquiry-form .form-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1.5rem;
-}
-
-.course-inquiry-form .form-group {
-  display: flex;
-  flex-direction: column;
-  gap: 0.55rem;
-}
-
-.course-inquiry-form .form-group.full-width {
-  grid-column: 1 / -1;
-}
-
-.course-inquiry-form .form-group label {
-  font-size: 0.88rem;
-  font-weight: 600;
-  color: var(--navy-950);
-}
-
-.course-inquiry-form .form-group input,
-.course-inquiry-form .form-group select,
-.course-inquiry-form .form-group textarea {
-  width: 100%;
-  padding: 0.95rem 1rem;
-  border: 1.5px solid var(--slate-300);
-  border-radius: 10px;
-  background: var(--paper-0);
-  color: var(--ink-800);
-  outline: none;
   transition:
-    border-color 0.2s ease,
-    box-shadow 0.2s ease,
+    background 0.2s ease,
+    color 0.2s ease,
     transform 0.2s ease;
 }
 
-.course-inquiry-form .form-group input,
-.course-inquiry-form .form-group select {
-  min-height: 52px;
-}
-
-.course-inquiry-form .form-group textarea {
-  min-height: 150px;
-  resize: vertical;
-}
-
-.course-inquiry-form .form-group input:hover,
-.course-inquiry-form .form-group select:hover,
-.course-inquiry-form .form-group textarea:hover {
-  border-color: var(--gold-600);
-}
-
-.course-inquiry-form .form-group input:focus,
-.course-inquiry-form .form-group select:focus,
-.course-inquiry-form .form-group textarea:focus {
-  border-color: var(--gold-600);
-  box-shadow: 0 0 0 4px rgba(11, 172, 166, 0.12);
-}
-
-.course-inquiry-form .form-group input::placeholder,
-.course-inquiry-form .form-group textarea::placeholder {
-  color: var(--slate-500);
-  opacity: 0.7;
+.cpd-popup-close:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #ffffff;
+  transform: rotate(90deg);
 }
 
 
-/* ==========================================================================
-   SUBMIT AREA
-   ========================================================================== */
+/* ---------- BADGE ---------- */
 
-.form-submit {
+.cpd-popup-badge {
+  width: 76px;
+  height: 76px;
+
+  margin: 0 auto 20px;
+
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1.5rem;
-  margin-top: 1.5rem;
-  flex-wrap: wrap;
-}
-
-.form-note {
-  color: var(--slate-500);
-  font-size: 0.85rem;
-  max-width: 40ch;
-}
-
-.form-note strong {
-  color: var(--navy-950);
-  display: block;
-  margin-bottom: 0.2rem;
-  font-size: 0.9rem;
-}
-
-.submit-button {
-  display: inline-flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 0.6rem;
-  padding: 0.95rem 2rem;
-  border-radius: var(--radius-sm);
-  font-weight: 600;
-  font-size: 0.95rem;
+
+  border-radius: 50%;
+
   background: var(--gold-600);
+
   color: var(--navy-950);
-  box-shadow: var(--shadow-tight);
-  white-space: nowrap;
-  transition:
-    transform 0.25s var(--ease-out),
-    box-shadow 0.25s var(--ease-out),
-    background 0.25s ease;
+
+  box-shadow:
+    0 8px 25px rgba(0, 0, 0, 0.25);
 }
 
-.submit-button:hover {
-  background: var(--gold-500);
-  box-shadow: var(--shadow-soft);
-  transform: translateY(-2px);
+.cpd-popup-badge span {
+  font-size: 23px;
+  font-weight: 800;
+  line-height: 1;
 }
 
-.form-message {
-  margin-top: 1.5rem;
-  padding: 1rem 1.2rem;
-  border-radius: var(--radius-sm);
-  font-size: 0.9rem;
-  line-height: 1.5;
-  display: none;
-}
+.cpd-popup-badge small {
+  margin-top: 4px;
 
-.form-message.success {
-  display: block;
-  color: #17663b;
-  background: #e8f7ee;
-  border: 1px solid #b9e4c9;
-}
+  font-size: 7px;
+  font-weight: 800;
 
-.form-message.error {
-  display: block;
-  color: #9d2920;
-  background: #fbeceb;
-  border: 1px solid #edc1bd;
+  letter-spacing: 0.08em;
 }
 
 
-/* ==========================================================================
-   INQUIRY BOTTOM CTA
-   ========================================================================== */
+/* ---------- TEXT ---------- */
 
-.inquiry-bottom {
-  background: var(--navy-950);
-  color: var(--paper-50);
-  padding-block: var(--section-pad);
-}
+.cpd-popup-eyebrow {
+  margin: 0 0 10px;
 
-.inquiry-bottom-content {
-  width: min(100% - 2.5rem, var(--container-w));
-  margin-inline: auto;
-  text-align: center;
-  max-width: 640px;
-}
+  font-family: "IBM Plex Mono", monospace;
 
-.inquiry-bottom .eyebrow {
-  color: var(--gold-500);
-  justify-content: center;
-}
-
-.inquiry-bottom .eyebrow::before {
-  background: var(--gold-500);
-}
-
-.inquiry-bottom h2 {
-  font-family: var(--font-display);
-  color: var(--paper-0);
-  font-size: var(--fs-h2);
-  margin-top: 0.75rem;
-}
-
-.inquiry-bottom p {
-  color: var(--slate-300);
-  margin-top: 1rem;
-}
-
-.bottom-cta {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.6rem;
-  margin-top: 1.8rem;
-  padding: 0.9rem 1.9rem;
-  border-radius: var(--radius-sm);
+  font-size: 0.72rem;
   font-weight: 600;
-  font-size: 0.95rem;
-  background: var(--gold-600);
-  color: var(--navy-950);
-  box-shadow: var(--shadow-tight);
-  transition:
-    transform 0.25s var(--ease-out),
-    box-shadow 0.25s var(--ease-out);
-}
 
-.bottom-cta:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-soft);
-}
+  letter-spacing: 0.18em;
 
-
-/* ==========================================================================
-   INQUIRY FOOTER
-   ========================================================================== */
-
-.footer-container {
-  width: min(100% - 2.5rem, var(--container-w));
-  margin-inline: auto;
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 2rem;
-  flex-wrap: wrap;
-  padding-block: 3rem 2rem;
-}
-
-.footer-title {
-  font-family: var(--font-display);
-  font-size: 1.2rem;
-  color: var(--paper-0);
-}
-
-.footer-brand p {
-  margin-top: 0.6rem;
-  max-width: 32ch;
-  font-size: 0.88rem;
-  color: var(--slate-300);
-}
-
-.footer-links {
-  display: flex;
-  gap: 1.5rem;
-  flex-wrap: wrap;
-}
-
-.footer-links a {
-  font-size: 0.88rem;
-  color: var(--slate-300);
-  transition: color 0.2s ease;
-}
-
-.footer-links a:hover {
   color: var(--gold-500);
 }
 
-.footer-bottom {
-  border-top: 1px solid var(--hairline-on-dark);
-  padding-block: 1.3rem;
+.cpd-popup-card h2 {
+  margin: 0 auto 14px;
+
+  max-width: 470px;
+
+  font-family: "Fraunces", serif;
+
+  font-size: clamp(1.8rem, 4vw, 2.4rem);
+
+  line-height: 1.15;
+
+  color: #ffffff;
 }
 
-.footer-bottom p {
-  width: min(100% - 2.5rem, var(--container-w));
-  margin-inline: auto;
-  font-size: 0.76rem;
-  color: var(--slate-300);
-  text-align: center;
+.cpd-popup-text {
+  max-width: 450px;
+
+  margin: 0 auto 25px;
+
+  color: rgba(255, 255, 255, 0.72);
+
+  font-size: 0.98rem;
+  line-height: 1.7;
+}
+
+
+/* ---------- ACCREDITATION DETAILS ---------- */
+
+.cpd-popup-meta {
+  display: flex;
+
+  justify-content: center;
+
+  gap: 45px;
+
+  margin: 0 auto 28px;
+
+  padding: 17px 20px;
+
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.cpd-popup-meta div {
+  display: flex;
+  flex-direction: column;
+
+  gap: 4px;
+}
+
+.cpd-popup-meta span {
+  font-family: "IBM Plex Mono", monospace;
+
+  font-size: 0.62rem;
+
+  text-transform: uppercase;
+
+  letter-spacing: 0.1em;
+
+  color: rgba(255, 255, 255, 0.48);
+}
+
+.cpd-popup-meta strong {
+  font-size: 0.95rem;
+
+  color: var(--gold-500);
+}
+
+
+/* ---------- CERTIFICATE BUTTON ---------- */
+
+.cpd-certificate-btn {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 10px;
+
+  min-height: 48px;
+
+  padding: 12px 22px;
+
+  border: 0;
+  border-radius: 6px;
+
+  background: var(--gold-600);
+  color: var(--navy-950);
+
+  font-family: inherit;
+
+  font-size: 0.88rem;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.cpd-certificate-btn:hover {
+  background: var(--gold-500);
+
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.cpd-certificate-btn span {
+  font-size: 1.1rem;
 }
 
 
 /* ==========================================================================
-   RESPONSIVE
+   CPD CERTIFICATE VIEWER
    ========================================================================== */
 
-@media (max-width: 900px) {
+.cpd-certificate-modal {
+  position: fixed;
+  inset: 0;
 
-  .footer-grid {
-    grid-template-columns: 1fr 1fr;
-  }
+  z-index: 11000;
 
-  .steps-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-  .benefits-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
+  padding: 25px;
 
-  .enroll-panel {
-    grid-template-columns: 1fr;
-  }
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
 
-  .hero-grid {
-    grid-template-columns: 1fr;
-  }
+  transition:
+    opacity 0.25s ease,
+    visibility 0.25s ease;
+}
 
-  .hero-portrait {
-    max-width: 420px;
-  }
+.cpd-certificate-modal.is-open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
 
-  .stat-strip {
-    grid-template-columns: repeat(2, 1fr);
-  }
+.cpd-certificate-overlay {
+  position: absolute;
+  inset: 0;
+
+  background: rgba(0, 0, 0, 0.86);
 }
 
 
-/* ==========================================================================
-   TABLET / MOBILE
-   ========================================================================== */
+/* ---------- CERTIFICATE CONTAINER ---------- */
 
-@media (max-width: 860px) {
+.cpd-certificate-container {
+  position: relative;
+  z-index: 1;
 
-  .nav-toggle {
-    display: block;
-  }
+  width: min(1000px, 100%);
 
-  .nav-links {
-    position: fixed;
-    inset: 0 0 0 30%;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-    padding: 2.5rem;
-    background: var(--navy-950);
-    transform: translateX(100%);
-    transition: transform 0.35s var(--ease-out);
-    gap: 1.6rem;
-  }
+  max-height: 92vh;
 
-  .nav-links.is-open {
-    transform: translateX(0);
-  }
+  padding: 12px;
 
-  .nav-links a {
-    font-size: 1.15rem;
-  }
+  background: #ffffff;
 
-  .nav-cta {
-    margin-left: 0;
-    margin-top: 1rem;
-  }
+  border-radius: 8px;
 
-  .main-nav {
-    display: none;
-  }
+  box-shadow:
+    0 30px 100px rgba(0, 0, 0, 0.5);
+
+  overflow: auto;
+}
+
+
+/* ---------- CERTIFICATE IMAGE ---------- */
+
+.cpd-certificate-image {
+  display: block;
+
+  width: 100%;
+  height: auto;
+
+  max-height: calc(92vh - 24px);
+
+  object-fit: contain;
+}
+
+
+/* ---------- CERTIFICATE CLOSE ---------- */
+
+.cpd-certificate-close {
+  position: absolute;
+
+  top: -48px;
+  right: 0;
+
+  width: 38px;
+  height: 38px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+
+  background: rgba(7, 15, 38, 0.9);
+  color: #ffffff;
+
+  font-size: 25px;
+  line-height: 1;
+
+  cursor: pointer;
 }
 
 
@@ -3161,483 +3269,80 @@ h4 {
 
 @media (max-width: 640px) {
 
-  .container,
-  .inquiry-container,
-  .inquiry-hero-content,
-  .nav-container,
-  .footer-container {
-    width: min(100% - 2rem, var(--container-w));
+  .cpd-popup {
+    padding: 16px;
   }
 
-  .section {
-    padding-block: 3.5rem;
+  .cpd-popup-card {
+    padding: 38px 22px 28px;
+
+    border-radius: 15px;
+
+    max-height: 90vh;
+    overflow-y: auto;
   }
 
-  .stat-strip {
-    gap: 1rem;
+  .cpd-popup-badge {
+    width: 66px;
+    height: 66px;
+
+    margin-bottom: 16px;
   }
 
-  .stat .num {
-    font-size: 1.6rem;
+  .cpd-popup-badge span {
+    font-size: 20px;
   }
 
-  .steps-grid,
-  .benefits-grid {
-    grid-template-columns: 1fr;
+  .cpd-popup-card h2 {
+    font-size: 1.65rem;
   }
 
-  .footer-grid {
-    grid-template-columns: 1fr;
-    gap: 2rem;
+  .cpd-popup-text {
+    font-size: 0.9rem;
+    line-height: 1.6;
   }
 
-  .footer-bottom {
-    flex-direction: column;
-    align-items: flex-start;
+  .cpd-popup-meta {
+    gap: 20px;
+
+    padding: 14px 10px;
   }
 
-  .enrollment-card {
-    padding: 1.25rem;
+  .cpd-popup-meta span {
+    font-size: 0.55rem;
   }
 
-  .enrollment-form .form-grid {
-    grid-template-columns: 1fr;
+  .cpd-popup-meta strong {
+    font-size: 0.82rem;
   }
 
-  .form-section {
-    padding-bottom: 2rem;
-    margin-bottom: 2rem;
-  }
-
-  .form-section-heading {
-    gap: 0.75rem;
-  }
-
-  .form-number {
-    width: 36px;
-    height: 36px;
-    min-width: 36px;
-    font-size: 0.7rem;
-  }
-
-  .form-section-heading h3 {
-    font-size: 1.25rem;
-  }
-
-  .form-submit {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .form-submit .btn,
-  .submit-button {
+  .cpd-certificate-btn {
     width: 100%;
-    justify-content: center;
+
+    font-size: 0.82rem;
   }
 
-  .required-note {
-    text-align: center;
+  .cpd-certificate-modal {
+    padding: 10px;
   }
 
-  .course-inquiry-form .form-grid {
-    grid-template-columns: 1fr;
+  .cpd-certificate-container {
+    width: 100%;
+
+    max-height: 88vh;
+
+    padding: 6px;
   }
 
-  /* Contact cards become a clean vertical stack */
-  .contact-info {
-    grid-template-columns: 1fr;
-  }
-
-  .contact-row {
-    padding: 0.9rem 1rem;
-  }
-
-  /* Smaller back-to-top button on mobile */
-  .back-top {
-    width: 42px;
-    height: 42px;
-    right: 1rem;
-    bottom: 1rem;
-  }
-
-  .back-top svg {
-    width: 17px;
-    height: 17px;
-  }
-
-  .footer-container {
-    flex-direction: column;
-    gap: 1.5rem;
+  .cpd-certificate-close {
+    top: -46px;
+    right: 0;
   }
 }
 
 
-/* ==========================================================================
-   EXTRA SMALL SCREENS
-   ========================================================================== */
+/* ---------- PREVENT PAGE SCROLL WHEN POPUP IS OPEN ---------- */
 
-@media (max-width: 420px) {
-
-  .hero h1,
-  .page-hero h1,
-  .inquiry-hero h1 {
-    font-size: 2.3rem;
-  }
-
-  .hero-ctas {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .hero-ctas .btn {
-    justify-content: center;
-  }
-
-  .enrollment-card {
-    padding: 1rem;
-  }
-
-  .enrollment-form .form-field input,
-  .enrollment-form .form-field textarea,
-  .enrollment-form .form-field select {
-    font-size: 0.9rem;
-  }
-
-  .inquiry-form-wrapper {
-    padding: 1.1rem;
-  }
-
-  .course-inquiry-form .form-group input,
-  .course-inquiry-form .form-group textarea,
-  .course-inquiry-form .form-group select {
-    font-size: 0.9rem;
-  }
-
-  .form-heading {
-    gap: 0.75rem;
-  }
-
-  .form-heading .form-number {
-    width: 36px;
-    height: 36px;
-    min-width: 36px;
-  }
-}
-
-
-/* ==========================================================================
-   ACCESSIBILITY
-   ========================================================================== */
-
-@media (prefers-reduced-motion: reduce) {
-
-  html {
-    scroll-behavior: auto;
-  }
-
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
-}
-
-
-/* ==========================================================================
-   PRINT
-   ========================================================================== */
-
-@media print {
-
-  .site-header,
-  .nav-toggle,
-  .back-top,
-  .btn,
-  .site-footer {
-    display: none !important;
-  }
-
-  body {
-    background: #ffffff;
-    color: #000000;
-  }
-
-  .section {
-    padding-block: 2rem;
-  }
-
-  .enrollment-card,
-  .inquiry-form-wrapper {
-    box-shadow: none;
-    border: 1px solid #000000;
-  }
-}
-/* ============================================================
-   MOBILE POLISH
-   ============================================================ */
-
-@media (max-width: 768px) {
-
-    /* ---------- GENERAL ---------- */
-
-    html {
-        scroll-behavior: smooth;
-        overflow-x: hidden;
-    }
-
-    body {
-        overflow-x: hidden;
-        width: 100%;
-    }
-
-    section {
-        padding-left: 1.25rem;
-        padding-right: 1.25rem;
-    }
-
-
-    /* ---------- NAVIGATION ---------- */
-
-    nav {
-        padding: 0.9rem 1.25rem;
-    }
-
-    .nav-links {
-        width: 100%;
-        left: 0;
-        right: 0;
-    }
-
-    .nav-links a {
-        padding: 0.75rem 0;
-    }
-
-
-    /* ---------- HERO ---------- */
-
-    #hero {
-        min-height: auto;
-        padding-top: 7rem;
-        padding-bottom: 4rem;
-    }
-
-    .hero-inner {
-        grid-template-columns: 1fr;
-        text-align: center;
-        gap: 2.5rem;
-    }
-
-    .hero-content {
-        width: 100%;
-    }
-
-    .hero-title {
-        font-size: clamp(2.2rem, 11vw, 3.5rem);
-        line-height: 1.05;
-    }
-
-    .hero-role {
-        font-size: 1rem;
-    }
-
-    .hero-tagline {
-        font-size: 0.95rem;
-        line-height: 1.7;
-        max-width: 100%;
-    }
-
-    .hero-buttons {
-        flex-direction: column;
-        width: 100%;
-        gap: 0.8rem;
-    }
-
-    .hero-buttons .btn {
-        width: 100%;
-        justify-content: center;
-    }
-
-    .hero-socials {
-        justify-content: center;
-        flex-wrap: wrap;
-    }
-
-
-    /* ---------- HERO VISUAL ---------- */
-
-    .hero-visual {
-        width: 100%;
-        display: flex;
-        justify-content: center;
-    }
-
-    .avatar-wrap {
-        width: min(70vw, 280px);
-        height: min(70vw, 280px);
-    }
-
-
-    /* ---------- ABOUT ---------- */
-
-    .about-grid {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-    }
-
-    .stats-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 0.75rem;
-    }
-
-    .stat-card {
-        padding: 1rem;
-    }
-
-
-    /* ---------- SKILLS ---------- */
-
-    .skills-grid,
-    .skill-categories {
-        grid-template-columns: 1fr;
-    }
-
-    .skill-category {
-        padding: 1.25rem;
-    }
-
-
-    /* ---------- PROJECTS ---------- */
-
-    .projects-grid {
-        grid-template-columns: 1fr;
-        gap: 1.25rem;
-    }
-
-    .project-card {
-        width: 100%;
-    }
-
-
-    /* ---------- CONTACT ---------- */
-
-    .contact-grid {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-    }
-
-    .form-row {
-        grid-template-columns: 1fr;
-        gap: 0;
-    }
-
-    .form-field {
-        width: 100%;
-    }
-
-    input,
-    textarea,
-    select {
-        width: 100%;
-        max-width: 100%;
-        font-size: 16px;
-    }
-
-    textarea {
-        min-height: 150px;
-        resize: vertical;
-    }
-
-    button,
-    .btn {
-        min-height: 48px;
-    }
-
-
-    /* ---------- FAQ ---------- */
-
-    .faq-question {
-        padding: 1rem;
-        gap: 0.75rem;
-    }
-
-    .faq-question span {
-        font-size: 0.95rem;
-    }
-
-    .faq-answer {
-        padding-left: 1rem;
-        padding-right: 1rem;
-    }
-
-
-    /* ---------- FLOATING SIDEBAR ---------- */
-
-    .float-sidebar {
-        display: none;
-    }
-
-
-    /* ---------- BACK TO TOP ---------- */
-
-    .back-to-top {
-        right: 1rem;
-        bottom: 1rem;
-        width: 44px;
-        height: 44px;
-    }
-
-
-    /* ---------- FOOTER ---------- */
-
-    footer {
-        padding-left: 1.25rem;
-        padding-right: 1.25rem;
-        text-align: center;
-    }
-
-}
-
-
-/* ============================================================
-   SMALL PHONES
-   ============================================================ */
-
-@media (max-width: 480px) {
-
-    section {
-        padding-left: 1rem;
-        padding-right: 1rem;
-    }
-
-    #hero {
-        padding-top: 6.5rem;
-    }
-
-    .hero-title {
-        font-size: clamp(2rem, 12vw, 2.8rem);
-    }
-
-    .hero-badge {
-        font-size: 0.75rem;
-        padding: 0.45rem 0.7rem;
-    }
-
-    .stats-grid {
-        grid-template-columns: 1fr 1fr;
-    }
-
-    .stat-card h3 {
-        font-size: 1.4rem;
-    }
-
-    .stat-card p {
-        font-size: 0.75rem;
-    }
-
-    .btn {
-        width: 100%;
-    }
-
+body.cpd-popup-open {
+  overflow: hidden;
 }

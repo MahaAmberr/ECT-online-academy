@@ -18,7 +18,102 @@
   <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
-  
+  <!-- =========================================================
+     CPD ACCREDITATION POPUP
+     ========================================================= -->
+
+<div class="cpd-popup" id="cpdPopup" aria-hidden="true">
+
+    <div class="cpd-popup-overlay" data-cpd-close></div>
+
+    <div class="cpd-popup-card" role="dialog" aria-modal="true" aria-labelledby="cpdPopupTitle">
+
+        <button
+            class="cpd-popup-close"
+            type="button"
+            aria-label="Close CPD accreditation"
+            data-cpd-close>
+            &times;
+        </button>
+
+        <div class="cpd-popup-content">
+
+            <div class="cpd-popup-badge">
+                <span>CPD</span>
+                <small>APPROVED PROVIDER</small>
+            </div>
+
+            <p class="cpd-popup-eyebrow">
+                OFFICIAL ACCREDITATION
+            </p>
+
+            <h2 id="cpdPopupTitle">
+                ECTS is a CPD Approved Provider
+            </h2>
+
+            <p class="cpd-popup-text">
+                We are proud to announce that Elevate Consulting and
+                Training Services has been approved as a CPD Provider
+                by The CPD Group.
+            </p>
+
+            <div class="cpd-popup-meta">
+                <div>
+                    <span>Provider Number</span>
+                    <strong>#790969</strong>
+                </div>
+
+                <div>
+                    <span>Issue Date</span>
+                    <strong>08/09/2026</strong>
+                </div>
+            </div>
+
+            <button
+                class="cpd-certificate-btn"
+                type="button"
+                id="viewCpdCertificate">
+                View Accreditation Certificate
+                <span>↗</span>
+            </button>
+
+        </div>
+
+    </div>
+</div>
+
+
+<!-- =========================================================
+     CPD CERTIFICATE VIEWER
+     ========================================================= -->
+
+<div
+    class="cpd-certificate-modal"
+    id="cpdCertificateModal"
+    aria-hidden="true">
+
+    <div
+        class="cpd-certificate-overlay"
+        data-certificate-close>
+    </div>
+
+    <div class="cpd-certificate-container">
+
+        <button
+            class="cpd-certificate-close"
+            type="button"
+            aria-label="Close certificate"
+            data-certificate-close>
+            &times;
+        </button>
+
+        <img
+            src="images/cpd-certificate.png"
+            alt="ECTS CPD Group Approved Provider Certificate"
+            class="cpd-certificate-image">
+
+    </div>
+</div>
 
   <!-- =====================================================================
        HEADER / PRIMARY NAVIGATION
@@ -215,6 +310,10 @@
         </div>
       </div>
     </section>
+
+
+
+
 
     <!-- ===================================================================
          PROGRAM PREVIEW

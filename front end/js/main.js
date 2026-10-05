@@ -485,3 +485,158 @@ document.addEventListener(
     }
 );
 
+/* ==========================================================================
+   CPD ACCREDITATION POPUP
+   ========================================================================== */
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    const cpdPopup = document.getElementById("cpdPopup");
+    const certificateModal = document.getElementById("cpdCertificateModal");
+
+    const viewCertificateBtn =
+        document.getElementById("viewCpdCertificate");
+
+    if (!cpdPopup) return;
+
+
+    /* ---------------------------------------------------------
+       OPEN CPD POPUP
+       --------------------------------------------------------- */
+
+    const openCpdPopup = () => {
+        cpdPopup.classList.add("is-open");
+        cpdPopup.setAttribute("aria-hidden", "false");
+
+        document.body.classList.add("cpd-popup-open");
+    };
+
+
+    /* ---------------------------------------------------------
+       CLOSE CPD POPUP
+       --------------------------------------------------------- */
+
+    const closeCpdPopup = () => {
+        cpdPopup.classList.remove("is-open");
+        cpdPopup.setAttribute("aria-hidden", "true");
+
+        document.body.classList.remove("cpd-popup-open");
+    };
+
+
+    /* ---------------------------------------------------------
+       SHOW ON HOMEPAGE ONLY
+       --------------------------------------------------------- */
+
+    const isHomepage =
+        window.location.pathname === "/" ||
+        window.location.pathname.endsWith("/index.html");
+
+
+    if (isHomepage) {
+
+        /*
+         * Show once per browser session.
+         * It will appear again when the browser session ends.
+         */
+
+        const alreadyShown =
+            sessionStorage.getItem("ectsCpdPopupShown");
+
+        if (!alreadyShown) {
+
+            setTimeout(() => {
+                openCpdPopup();
+
+                sessionStorage.setItem(
+                    "ectsCpdPopupShown",
+                    "true"
+                );
+
+            }, 1200);
+        }
+    }
+
+
+    /* ---------------------------------------------------------
+       CLOSE BUTTONS / OVERLAY
+       --------------------------------------------------------- */
+
+    document.querySelectorAll("[data-cpd-close]")
+        .forEach((element) => {
+
+            element.addEventListener("click", closeCpdPopup);
+
+        });
+
+
+    /* ---------------------------------------------------------
+       OPEN CERTIFICATE
+       --------------------------------------------------------- */
+
+    if (viewCertificateBtn && certificateModal) {
+
+        viewCertificateBtn.addEventListener("click", () => {
+
+            certificateModal.classList.add("is-open");
+
+            certificateModal.setAttribute(
+                "aria-hidden",
+                "false"
+            );
+
+        });
+    }
+
+
+    /* ---------------------------------------------------------
+       CLOSE CERTIFICATE
+       --------------------------------------------------------- */
+
+    document.querySelectorAll("[data-certificate-close]")
+        .forEach((element) => {
+
+            element.addEventListener("click", () => {
+
+                certificateModal.classList.remove("is-open");
+
+                certificateModal.setAttribute(
+                    "aria-hidden",
+                    "true"
+                );
+
+            });
+
+        });
+
+
+    /* ---------------------------------------------------------
+       ESC KEY
+       --------------------------------------------------------- */
+
+    document.addEventListener("keydown", (event) => {
+
+        if (event.key !== "Escape") return;
+
+        if (
+            certificateModal &&
+            certificateModal.classList.contains("is-open")
+        ) {
+
+            certificateModal.classList.remove("is-open");
+
+            certificateModal.setAttribute(
+                "aria-hidden",
+                "true"
+            );
+
+            return;
+        }
+
+        if (cpdPopup.classList.contains("is-open")) {
+            closeCpdPopup();
+        }
+
+    });
+
+});
