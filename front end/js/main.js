@@ -28,11 +28,7 @@ function initMobileNav() {
 
     navLinks.querySelectorAll("a").forEach((link) => {
         link.addEventListener("click", () => {
-            navToggle.setAttribute(
-                "aria-expanded",
-                "false"
-            );
-
+            navToggle.setAttribute("aria-expanded", "false");
             navLinks.classList.remove("is-open");
         });
     });
@@ -99,13 +95,16 @@ function initScrollReveal() {
 
     if (!revealElements.length) return;
 
-    // If IntersectionObserver is supported
     if ("IntersectionObserver" in window) {
+
         const observer =
             new IntersectionObserver(
                 (entries, observer) => {
+
                     entries.forEach((entry) => {
+
                         if (entry.isIntersecting) {
+
                             entry.target.classList.add(
                                 "is-visible"
                             );
@@ -126,7 +125,7 @@ function initScrollReveal() {
         });
 
     } else {
-        // Fallback for older browsers
+
         revealElements.forEach((element) => {
             element.classList.add("is-visible");
         });
@@ -139,20 +138,28 @@ function initScrollReveal() {
 // ============================================================
 
 function initBackToTop() {
+
+    // Your actual CSS/HTML uses .back-top
     const button =
+        document.querySelector(".back-top") ||
         document.querySelector(".back-to-top");
 
     if (!button) return;
 
     window.addEventListener("scroll", () => {
+
         if (window.scrollY > 500) {
+
             button.classList.add("is-visible");
+
         } else {
+
             button.classList.remove("is-visible");
         }
     });
 
     button.addEventListener("click", () => {
+
         window.scrollTo({
             top: 0,
             behavior: "smooth"
@@ -166,6 +173,7 @@ function initBackToTop() {
 // ============================================================
 
 function initContactForm() {
+
     const form =
         document.querySelector("#contact-form");
 
@@ -173,6 +181,7 @@ function initContactForm() {
 
     const status =
         form.querySelector(".form-status");
+
 
     const validators = {
 
@@ -204,6 +213,7 @@ function initContactForm() {
     // ========================================================
 
     function validateField(field) {
+
         const rule =
             validators[field.name];
 
@@ -224,7 +234,9 @@ function initContactForm() {
                 ".error-msg, .error-message"
             );
 
+
         if (result === true) {
+
             wrapper.classList.remove(
                 "has-error"
             );
@@ -236,13 +248,13 @@ function initContactForm() {
             return true;
         }
 
+
         wrapper.classList.add(
             "has-error"
         );
 
         if (errorElement) {
-            errorElement.textContent =
-                result;
+            errorElement.textContent = result;
         }
 
         return false;
@@ -263,7 +275,6 @@ function initContactForm() {
                 validateField(field);
             }
         );
-
     });
 
 
@@ -294,8 +305,11 @@ function initContactForm() {
                     .map(validateField)
                     .every(Boolean);
 
+
             if (!allValid) {
+
                 if (status) {
+
                     status.textContent = "";
 
                     status.className =
@@ -311,6 +325,7 @@ function initContactForm() {
             // ------------------------------------------------
 
             if (status) {
+
                 status.textContent =
                     "Sending your message...";
 
@@ -375,6 +390,7 @@ function initContactForm() {
                 // ------------------------------------------------
 
                 if (!response.ok) {
+
                     throw new Error(
                         data.message ||
                         "Failed to send your message."
@@ -387,6 +403,7 @@ function initContactForm() {
                 // ------------------------------------------------
 
                 if (status) {
+
                     status.textContent =
                         "Message sent successfully! Our team will get back to you soon.";
 
@@ -413,16 +430,16 @@ function initContactForm() {
                     field.classList.remove(
                         "has-error"
                     );
-
                 });
+
 
                 form.querySelectorAll(
                     ".error-msg, .error-message"
                 ).forEach((error) => {
 
                     error.textContent = "";
-
                 });
+
 
             } catch (error) {
 
@@ -432,6 +449,7 @@ function initContactForm() {
                 );
 
                 if (status) {
+
                     status.textContent =
                         error.message ||
                         "Something went wrong. Please try again.";
@@ -450,15 +468,226 @@ function initContactForm() {
 // ============================================================
 
 function initYear() {
+
     const yearElement =
         document.querySelector(
             "#current-year"
         );
 
     if (yearElement) {
+
         yearElement.textContent =
             new Date().getFullYear();
     }
+}
+
+
+// ============================================================
+// CPD ACCREDITATION POPUP
+// ============================================================
+
+function initCpdPopup() {
+
+    const cpdPopup =
+        document.getElementById("cpdPopup");
+
+    const certificateModal =
+        document.getElementById(
+            "cpdCertificateModal"
+        );
+
+    const viewCertificateBtn =
+        document.getElementById(
+            "viewCpdCertificate"
+        );
+
+    if (!cpdPopup) return;
+
+
+    // --------------------------------------------------------
+    // OPEN CPD POPUP
+    // --------------------------------------------------------
+
+    const openCpdPopup = () => {
+
+        cpdPopup.classList.add("is-open");
+
+        cpdPopup.setAttribute(
+            "aria-hidden",
+            "false"
+        );
+
+        document.body.classList.add(
+            "cpd-popup-open"
+        );
+    };
+
+
+    // --------------------------------------------------------
+    // CLOSE CPD POPUP
+    // --------------------------------------------------------
+
+    const closeCpdPopup = () => {
+
+        cpdPopup.classList.remove(
+            "is-open"
+        );
+
+        cpdPopup.setAttribute(
+            "aria-hidden",
+            "true"
+        );
+
+        document.body.classList.remove(
+            "cpd-popup-open"
+        );
+    };
+
+
+    // --------------------------------------------------------
+    // HOMEPAGE ONLY
+    // --------------------------------------------------------
+
+    const isHomepage =
+        window.location.pathname === "/" ||
+        window.location.pathname.endsWith(
+            "/index.html"
+        );
+
+
+    if (isHomepage) {
+
+        const alreadyShown =
+            sessionStorage.getItem(
+                "ectsCpdPopupShown"
+            );
+
+
+        if (!alreadyShown) {
+
+            setTimeout(() => {
+
+                openCpdPopup();
+
+                sessionStorage.setItem(
+                    "ectsCpdPopupShown",
+                    "true"
+                );
+
+            }, 1200);
+        }
+    }
+
+
+    // --------------------------------------------------------
+    // CLOSE BUTTONS / OVERLAY
+    // --------------------------------------------------------
+
+    document
+        .querySelectorAll("[data-cpd-close]")
+        .forEach((element) => {
+
+            element.addEventListener(
+                "click",
+                closeCpdPopup
+            );
+        });
+
+
+    // --------------------------------------------------------
+    // OPEN CERTIFICATE
+    // --------------------------------------------------------
+
+    if (
+        viewCertificateBtn &&
+        certificateModal
+    ) {
+
+        viewCertificateBtn.addEventListener(
+            "click",
+            () => {
+
+                certificateModal.classList.add(
+                    "is-open"
+                );
+
+                certificateModal.setAttribute(
+                    "aria-hidden",
+                    "false"
+                );
+            }
+        );
+    }
+
+
+    // --------------------------------------------------------
+    // CLOSE CERTIFICATE
+    // --------------------------------------------------------
+
+    document
+        .querySelectorAll("[data-certificate-close]")
+        .forEach((element) => {
+
+            element.addEventListener(
+                "click",
+                () => {
+
+                    if (!certificateModal) return;
+
+                    certificateModal.classList.remove(
+                        "is-open"
+                    );
+
+                    certificateModal.setAttribute(
+                        "aria-hidden",
+                        "true"
+                    );
+                }
+            );
+        });
+
+
+    // --------------------------------------------------------
+    // ESC KEY
+    // --------------------------------------------------------
+
+    document.addEventListener(
+        "keydown",
+        (event) => {
+
+            if (event.key !== "Escape") return;
+
+
+            if (
+                certificateModal &&
+                certificateModal.classList.contains(
+                    "is-open"
+                )
+            ) {
+
+                certificateModal.classList.remove(
+                    "is-open"
+                );
+
+                certificateModal.setAttribute(
+                    "aria-hidden",
+                    "true"
+                );
+
+                return;
+            }
+
+
+            if (
+                cpdPopup.classList.contains(
+                    "is-open"
+                )
+            ) {
+
+                closeCpdPopup();
+            }
+        }
+    );
 }
 
 
@@ -482,161 +711,7 @@ document.addEventListener(
 
         initYear();
 
+        initCpdPopup();
     }
 );
 
-/* ==========================================================================
-   CPD ACCREDITATION POPUP
-   ========================================================================== */
-
-document.addEventListener("DOMContentLoaded", () => {
-
-    const cpdPopup = document.getElementById("cpdPopup");
-    const certificateModal = document.getElementById("cpdCertificateModal");
-
-    const viewCertificateBtn =
-        document.getElementById("viewCpdCertificate");
-
-    if (!cpdPopup) return;
-
-
-    /* ---------------------------------------------------------
-       OPEN CPD POPUP
-       --------------------------------------------------------- */
-
-    const openCpdPopup = () => {
-        cpdPopup.classList.add("is-open");
-        cpdPopup.setAttribute("aria-hidden", "false");
-
-        document.body.classList.add("cpd-popup-open");
-    };
-
-
-    /* ---------------------------------------------------------
-       CLOSE CPD POPUP
-       --------------------------------------------------------- */
-
-    const closeCpdPopup = () => {
-        cpdPopup.classList.remove("is-open");
-        cpdPopup.setAttribute("aria-hidden", "true");
-
-        document.body.classList.remove("cpd-popup-open");
-    };
-
-
-    /* ---------------------------------------------------------
-       SHOW ON HOMEPAGE ONLY
-       --------------------------------------------------------- */
-
-    const isHomepage =
-        window.location.pathname === "/" ||
-        window.location.pathname.endsWith("/index.html");
-
-
-    if (isHomepage) {
-
-        /*
-         * Show once per browser session.
-         * It will appear again when the browser session ends.
-         */
-
-        const alreadyShown =
-            sessionStorage.getItem("ectsCpdPopupShown");
-
-        if (!alreadyShown) {
-
-            setTimeout(() => {
-                openCpdPopup();
-
-                sessionStorage.setItem(
-                    "ectsCpdPopupShown",
-                    "true"
-                );
-
-            }, 1200);
-        }
-    }
-
-
-    /* ---------------------------------------------------------
-       CLOSE BUTTONS / OVERLAY
-       --------------------------------------------------------- */
-
-    document.querySelectorAll("[data-cpd-close]")
-        .forEach((element) => {
-
-            element.addEventListener("click", closeCpdPopup);
-
-        });
-
-
-    /* ---------------------------------------------------------
-       OPEN CERTIFICATE
-       --------------------------------------------------------- */
-
-    if (viewCertificateBtn && certificateModal) {
-
-        viewCertificateBtn.addEventListener("click", () => {
-
-            certificateModal.classList.add("is-open");
-
-            certificateModal.setAttribute(
-                "aria-hidden",
-                "false"
-            );
-
-        });
-    }
-
-
-    /* ---------------------------------------------------------
-       CLOSE CERTIFICATE
-       --------------------------------------------------------- */
-
-    document.querySelectorAll("[data-certificate-close]")
-        .forEach((element) => {
-
-            element.addEventListener("click", () => {
-
-                certificateModal.classList.remove("is-open");
-
-                certificateModal.setAttribute(
-                    "aria-hidden",
-                    "true"
-                );
-
-            });
-
-        });
-
-
-    /* ---------------------------------------------------------
-       ESC KEY
-       --------------------------------------------------------- */
-
-    document.addEventListener("keydown", (event) => {
-
-        if (event.key !== "Escape") return;
-
-        if (
-            certificateModal &&
-            certificateModal.classList.contains("is-open")
-        ) {
-
-            certificateModal.classList.remove("is-open");
-
-            certificateModal.setAttribute(
-                "aria-hidden",
-                "true"
-            );
-
-            return;
-        }
-
-        if (cpdPopup.classList.contains("is-open")) {
-            closeCpdPopup();
-        }
-
-    });
-
-});
